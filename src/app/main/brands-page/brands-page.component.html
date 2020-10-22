@@ -1,0 +1,25 @@
+<section class="home-sec-2">
+        <div class="container">
+            <div class="breadcrums">
+                <a href="/" class="page-bradcum">Home </a> <mat-icon class="right-arrow">navigate_next</mat-icon>
+                <a href="javascript:void(0)" class="page-bradcum">Shop by Brands</a>
+            </div>
+            <div class="page-title-block" fxLayout="column" fxLayoutAlign="start start" fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between end" fxLayoutGap="20px">
+                <div fxLayout="column">
+                    <h4 class="brand-page-title">Brands</h4>
+                </div>
+            </div>
+            <div class="row">
+                <ul class="brand-box-wrapper">
+                    <li class="main-brand-box" *ngFor="let result of results">
+                        <a routerLink="/product/{{ result.brand_name | lowercase | removewhitespaces }}/{{result.brand_id}}" class="product-box">
+                            <div class="product-img-div">
+                                <img class="product-img" src="{{link}}{{result.brand_image}}">
+                            </div>
+                            <p class="brand-title">{{result.brand_name}}</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>

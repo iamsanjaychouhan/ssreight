@@ -1,0 +1,51 @@
+/* You can add global styles to this file, and also import other style files */
+.mat-slide-toggle-bar,
+.mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+  background-color: #8EC63F;
+}
+.mat-slide-toggle-thumb,
+.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb{
+  background-color: #68B130;
+}
+.mat-form-field{
+  display: block !important;
+  width: 100% ;
+}
+.mat-form-field-infix{
+  width: 100%;
+
+}
+.mat-checkbox-layout .mat-checkbox-label{
+  line-height: 25px;
+  span.color-gray{
+    white-space: normal;
+  }
+}
+.mat-checkbox-checked.mat-accent .mat-checkbox-background, 
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  background-color: #FF8913;
+}
+.mat-checkbox-background, .mat-checkbox-frame {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  border-radius: 3px;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+.mat-checkbox-frame {
+  border-color: #CFCFCF;
+}
+.product-detal-sec .mat-icon{
+  color:#68B130;
+}
+.product-detal-sec .mat-icon {
+  height: 19px !important;
+  width: 16px !important;
+}
+.product-detal-sec .material-icons{
+  font-size: 15px !important;
+  vertical-align: middle;
+}

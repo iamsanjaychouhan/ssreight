@@ -1,0 +1,92 @@
+<section class="my-order-sec-1 pt-3">
+    <div class="container">
+        <div class="" fxLayout="row" fxLayoutAlign="start start" fxFlex="100" fxLayoutGap="30px">
+            <div class="left-white-box" fxLayout="column" fxLayoutAlign="start start" fxFlex="100">
+                <div class="mb-30" fxLayout="column" fxLayoutAlign="start start" fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center" fxFlex="100" fxLayoutGap="20px" fxFill="fill">
+                    <div fxLayout="column" >
+                        <h5 class="color-dgray fontsize-20 fontfamily-bold mt-0 mb-0 pt-10 pb-10">My Order</h5>
+                        <div class="breadcrums pt-0 pb-0">
+                                <span class="fontsize-14 color-lgray fontfamily-regular display-b mb-0">
+                                    <a href="/" class="a_hover_lgray color-lgray">Home </a> >
+                                    <a href="javascript:void(0)" class="a_hover_lgray color-lgray">My Orders</a>
+                                </span>
+                        </div>
+                    </div>
+                    <div fxLayout="column">
+                        <mat-form-field appearance="outline" class="mat-outline-height mt-0 mb-0">
+                            <mat-label>Sort by</mat-label>
+                            <mat-select (selectionChange)="orderlist($event.value)">
+                                <mat-option *ngFor="let subcategorie of subcategories" [value]="subcategorie.value">
+                                {{subcategorie.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <p class="no-order" *ngIf="results.length === 0">No Orders !</p>
+                <div *ngFor="let result of results" class="order-box-block mb-30" fxLayout="column" fxLayoutAlign="start start">
+                    <div class="px-3 py-3 bg-lgray" fxLayout="column" fxLayoutAlign="start start" fxLayout.gt-xs="row wrap" fxLayoutAlign.gt-xs="space-between center" fxFlex="100" fxFill="fill" fxLayoutGap="20px">
+                           <div>
+                               <h4 class="fontsize-16 color-green fontfamily-semibold mt-0 mb-0">Order No. {{result.order_number}}</h4>
+                               <p class="fontsize-14 color-gray fontfamily-semibold mt-0 mb-0">Delivery Expected on {{result.delivery_date}}</p>
+                           </div>
+                           <div>
+                               <span class="label-white-button-type fontfamily-semibold" [ngClass]="[(result.status=='confirmed') ? 'color-green' : '',  (result.status=='cancelled') ? 'color-red' : '',(result.status=='shipped') ? 'color-orange' : '',(result.status=='completed') ? 'color-dgray' : '']">{{result.status}} </span>
+                           </div>
+                    </div>
+                    <div class="px-3" fxLayout="column" fxLayoutAlign="start start" fxFill="fill">
+                        <div *ngFor="let detail of result.detail" class="py-3 bg-white inner-product-box" fxLayout="column" fxLayoutAlign="start start" fxLayout.gt-xs="row wrap" fxLayoutAlign.gt-xs="space-between center" fxFlex="100" fxFill="fill" fxLayoutGap="16px">
+                            <div class="" fxFlex="49" fxFlex.gt-sm="55" fxLayout="column" fxLayoutAlign="start start" fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="start center" fxLayoutGap="15px">
+                                <img src="{{link}}{{detail.fk_product_id}}/{{detail.image}}" class="my-order-product-img">
+                                <p class="fontsize-16 color-black fontfamily-semibold mt-0 mb-0 mr-50">{{detail.product_name}}</p>
+                            </div>
+                            <div fxFlex="15" fxFlex.gt-sm="15" fxLayout="column">
+                                <p class="fontsize-16 color-black fontfamily-semibold mt-0 mb-0">₹ {{detail.price}}</p>
+                            </div>
+                            <div fxFlex="30" fxFlex.gt-sm="25">
+                                <p *ngIf="result.status=='completed'" (click)="rateProductPopup(detail.fk_product_id,result.order_id)" class="fontsize-14 color-green fontfamily-semibold mt-0 mb-0 text-underline cursor"> <img src="../../../assets/images/star-green.png" class="mr-15">Rate this product</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="px-3 py-3" fxLayout="column" fxLayoutAlign="start start" fxFill="fill">
+                        <h4 class="fontsize-16 color-black fontfamily-semibold mt-0 mb-20">Order Tracking</h4>
+                        <div class="three-tier-process-block" fxLayout="row" fxLayoutAlign="start start" fxFill="fill">
+                            <div class="three-tier-process ttp1 p-circle-green">
+                                <span class=""></span>
+                                <p class="fontsize-14 color-gray fontfamily-semibold mt-0 mb-0">Order placed</p>
+                            </div>
+                            <div class="three-tier-process ttp2 p-circle-grey" *ngIf="result.status!='shipped'">
+                                <span class=""></span>
+                                <p class="fontsize-14 color-gray fontfamily-semibold mt-0 mb-0">Shipped</p>
+                            </div>
+                            <div class="three-tier-process ttp2 p-circle-green" *ngIf="result.status=='shipped'">
+                                <span class=""></span>
+                                <p class="fontsize-14 color-gray fontfamily-semibold mt-0 mb-0">Shipped</p>
+                            </div>
+                            
+                            <div class="three-tier-process ttp3 p-circle-gray" *ngIf="result.status!='completed'">
+                                <span class=""></span>
+                                <p class="fontsize-14 color-gray fontfamily-semibold mt-0 mb-0">Delivered</p>
+                            </div>
+
+                             <div class="three-tier-process ttp3 p-circle-complete" *ngIf="result.status=='completed'">
+                                <span class=""></span>
+                                <p class="fontsize-14 color-gray fontfamily-semibold mt-0 mb-0">Delivered</p>
+                            </div>
+                        </div>
+                    </div>  
+                    <div class="px-3 py-3" fxLayout="column" fxLayout.gt-xs="row" fxLayoutAlign="center center" fxLayoutAlign.gt-xs="start start" fxFill="fill" fxLayoutGap="20px">
+                        <button *ngIf="result.status=='confirmed'" (click)="cancelConfirmationPopup(result.order_id)" class="btn btn-green" style="width: 200px;">Cancel order</button>
+                        <!-- <button *ngIf="result.status=='completed'" (click)="reorder(result.order_id)" class="btn btn-border-green" style="width: 200px;">order again</button> -->
+                        <button (click)="viewinvoice(result.order_id)" class="btn btn-border-green" style="width: 200px;">View Invoice</button>
+                    </div>  
+                    <div class="px-3 py-3 bg-white border-t" fxLayout="column" fxLayoutAlign="start start" fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center" fxFlex="100" fxFill="fill" fxLayoutGap="10px">
+                        <span class="fontsize-14 color-gray fontfamily-bold">Delivery Date : <span class="color-black">{{result.delivery_date}}</span></span>
+                        <span class="fontsize-14 color-gray fontfamily-bold">Order Total Value: <span class="color-black">₹ {{result.total}}</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

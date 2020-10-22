@@ -1,0 +1,39 @@
+<div class="relative">
+    <a class="crose-icon" mat-dialog-close>
+        <img src="../../../assets/images/cencel-icon.svg" alt="" />
+    </a>
+    <mat-dialog-content class="modal-sm">
+        <div class="align-center mb-4">
+            <h2 mat-dialog-title class="fontsize-24 color-black fontfamily-bold mb-0">Login On Safety Wagon</h2>
+            <span class="fontsize-12 fontfamily-regular">Login to Continue</span>
+        </div>
+        <form class="example-form pb-4" #LoginForm="ngForm">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Email/Mobile no." [(ngModel)]="username" name="username" required>
+                <p class="error" *ngIf="username_err">{{username_err}}</p>
+            </mat-form-field>
+            <mat-form-field class="example-full-width mb-4">
+                <input matInput type="password" placeholder="Password" [(ngModel)]="password" name="password" required>
+                <p class="error" *ngIf="password_err">{{password_err}}</p>
+            </mat-form-field>
+            <button (click)="onSubmit()" class="btn btn-green btn-shadow" mat-button [disabled]="!LoginForm.form.valid">Login</button>
+        </form>
+    </mat-dialog-content>
+    <div class="divider"></div>
+    <!-- <div class="m-auto" fxLayout="row" fxLayoutAlign="space-around space-around" style="width: 60%;margin-top: 1rem !important;margin-bottom:1rem !important;">
+        <a href="#" class="social-icon">
+            <img src="../../../assets/images/facebook-icon.svg" alt="" />
+        </a>
+        <a href="#" class="social-icon">
+            <img src="../../../assets/images/google-icon.svg" alt="" />
+        </a>
+    </div> -->
+    <div class="" fxLayout="row" fxLayoutAlign="space-between">
+        <div class=""fxLayout="column">
+            <a (click)="userPopup()" mat-dialog-close class="fontfamily-regular color-orange fontsize-14">New User ? Signup</a>
+        </div>
+        <div class=""fxLayout="column">
+            <a class="fontfamily-regular color-orange fontsize-14" (click)="forgotPopup()"  mat-dialog-close>Forgot Password</a>
+        </div>
+    </div>
+</div>

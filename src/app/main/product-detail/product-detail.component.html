@@ -1,0 +1,398 @@
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-spin-clockwise" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+    <div class="product-detail-sec pt-2 pb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
+                <div class="pb-2">
+                    <div class="page-bradcum" [innerHTML]="catname"></div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-5 col-lg-4 col-xl-4">
+                <div class="product-image-box top-sticky">
+                    <div class="product-image-wrapper">
+                        <img class="product-main-image" src="{{link}}{{product_image}}">
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-7 col-lg-8 col-xl-8">
+                <div class="relative border-b bg-white">
+                    <div class="border-b" fxLayout="row" fxLayoutAlign="space-between" > 
+                        <div class="title-wrapper" fxLayout="column">
+                            <h6 class="product-main-title">{{product_name}}</h6>
+                            <ul class="product-rating">
+                                <li class="brand">by {{brand_name}}</li>
+                                <li class="product-rating-wrapper">
+                                    <div class="rating-star avg-rating rating-count">(4.2) 
+                                        <mat-icon>grade</mat-icon>
+                                    </div>
+                                </li>
+                                <li class="rating">140 Rating</li>
+                                <li class="rating">1150 Reviews</li>
+                                <li class="stock" ng-if="results.product_unit > '0'; else OutOfStock"> In Stock</li>
+                                <ng-template #OutOfStock>
+                                    <li class="stock">Out Of Stock</li>
+                                </ng-template>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="product-detail-block row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7">    
+                            <div class="mb-2 product-detail-right" fxLayout="row">
+                                <div class="mt-2 margin-t" fxLayout="column" fxFlex="100">
+                                    <div class="" fxLayout="row" fxFlex="100">
+                                        <div class="product-price-block" fxLayout="column" fxFlex="60">
+                                            <div fxLayout="row" fxLayoutAlign="start center" fxFlex="100">
+                                                <span class="product-discount-price">
+                                                    ₹ {{product_dprice}}
+                                                </span>
+                                                <del class="product-price">₹ {{product_price}}</del>
+                                                <span class="save-amt">{{percent}} Off</span>
+                                            </div>
+                                            <div class="small-note-text">
+                                                GST @ {{taxOfProduct}} % inclusive price {{ productpricewithgst }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="display-b mt-2">
+                                        <div class="select-price-box" *ngIf="session.user_id>0 && session.user_type=='company'">
+                                            <div class="table-responsive-sm table-responsive-md">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th colspan="3">Bulk Quantity Discounts!!</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Select</th>
+                                                            <th>Quantity</th>
+                                                            <th>Price/Pieace</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody *ngFor="let dpq of dealerqtypriceOfProduct;">
+                                                        <tr *ngIf="dpq.qty_one_start > 0 && dpq.qty_one_start !='' && dpq.qty_one_start != 0 && dpq.qty_one_start !='null' && dpq.qty_one_end !='' && dpq.qty_one_end !='null' && dpq.dealer_price_one !='' && dpq.dealer_price_one !='null' ">
+                                                            <td>
+                                                                <input type="radio" [value]="dpq.qty_one_start" name="radiogroup" [checked]="this.quantity >= dpq.qty_one_start && this.quantity <= dpq.qty_one_end" (change)="onSelectionChange(dpq.qty_one_start,dpq.qty_one_end,dpq.dealer_price_one)"> 
+                                                            </td>
+                                                            <td>
+                                                                {{ dpq.qty_one_start }}
+                                                            </td>
+                                                            <td>
+                                                                {{ dpq.dealer_price_one }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr *ngIf="dpq.qty_two_start > 0 && dpq.qty_two_start!='' && dpq.qty_two_start!='null' && dpq.qty_two_end!='' && dpq.qty_two_end!='null' && dpq.dealer_price_two!='' && dpq.dealer_price_two!='null' ">
+                                                            <td>
+                                                                <input type="radio" [value]="dpq.qty_one_start" name="radiogroup" [checked]="this.quantity >= dpq.qty_two_start && this.quantity <= dpq.qty_two_end" (change)="onSelectionChange(dpq.qty_two_start,dpq.qty_two_end,dpq.dealer_price_two)">
+                                                            </td>
+                                                            <td>
+                                                                {{ dpq.qty_two_start }}
+                                                            </td>
+                                                            <td>
+                                                                {{ dpq.dealer_price_two }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr *ngIf="dpq.qty_three_start > 0 && dpq.qty_three_start!='' && dpq.qty_three_start!='null' && dpq.qty_three_end!='' && dpq.qty_three_end!='null' && dpq.dealer_price_three!='' && dpq.dealer_price_three!='null' ">
+                                                            <td>
+                                                                <input type="radio" [value]="dpq.qty_one_start" name="radiogroup" [checked]="this.quantity >= dpq.qty_three_start && this.quantity <= dpq.qty_three_end" (change)="onSelectionChange(dpq.qty_three_start,dpq.qty_three_end,dpq.dealer_price_three)">
+                                                            </td>
+                                                            <td>
+                                                                {{ dpq.qty_three_start }}
+                                                            </td>
+                                                            <td>
+                                                                {{ dpq.dealer_price_three }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr *ngIf="dpq.qty_four_start > 0 && dpq.qty_four_start!='' && dpq.qty_four_start!='null' && dpq.qty_four_end!='' && dpq.qty_four_end!='null' && dpq.dealer_price_four!='' && dpq.dealer_price_four!='null' ">
+                                                            <td>
+                                                                <input type="radio" [value]="dpq.qty_one_start" name="radiogroup" [checked]="this.quantity >= dpq.qty_four_start && this.quantity <= dpq.qty_four_end" (change)="onSelectionChange(dpq.qty_four_start,dpq.qty_four_end,dpq.dealer_price_four)">
+                                                            </td>
+                                                            <td>
+                                                                {{ dpq.qty_four_start }}
+                                                            </td>
+                                                            <td>
+                                                                {{ dpq.dealer_price_four }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr *ngIf="dpq.qty_five_start > 0 && dpq.qty_five_start!='' && dpq.qty_five_start!='null' && dpq.qty_five_end!='' && dpq.qty_five_end!='null' && dpq.dealer_price_five!='' && dpq.dealer_price_five!='null' ">
+                                                            <td>
+                                                                <input type="radio" [value]="dpq.qty_one_start" name="radiogroup" [checked]="this.quantity >= dpq.qty_five_start && this.quantity <= 2000000" (change)="onSelectionChange(dpq.qty_five_start,dpq.qty_five_end,dpq.dealer_price_five)">
+                                                            </td>
+                                                            <td>
+                                                                {{ dpq.qty_five_start }}
+                                                            </td>
+                                                            <td>
+                                                                {{ dpq.dealer_price_five }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr *ngIf="dpq.dpq_id <= '0' || dpq.dpq_id == 'null' || dpq.dpq_id == '' ">
+                                                            <td colspan="3">No data available</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <!-- <p>You are selected: {{selected}}</p> -->
+                                            </div>
+                                        </div>
+                                        <div class="pincode-sec" fxLayout="row" fxLayoutAlign="space-between center">
+                                            <form class="example-form" #PincodeForm="ngForm">
+                                                <mat-form-field>
+                                                    <input matInput placeholder="Pin Code" class="example-right-align select-label" [(ngModel)]="pincode" name="pincode" id="pincode" minlength="6" maxlength="6" pattern="[0-9]+" required>
+                                                    <mat-icon matPrefix class="color-red" style="color: #F04124;"> location_on</mat-icon>
+                                                    <button matSuffix class="check-btn" (click)="onSubmit()" mat-button [disabled]="!PincodeForm.form.valid">Check</button>
+                                                    <p class="error error" *ngIf="pincode_err">{{pincode_err}}</p>
+                                                    <p class="error successor" *ngIf="pincode_succ">{{pincode_succ}}</p>
+                                                </mat-form-field>
+                                            </form>
+                                        </div>
+                                        <p class="pro-description-title" *ngIf="sizeOfProduct && sizeOfProduct[0].size_value != null">Select Size</p>
+                                        <div class="size-check pb-3" *ngIf="sizeOfProduct && sizeOfProduct[0].size_value != null ">
+                                            <div class="radio mt-0 mb-0">
+                                                <label class="size-check-inner" *ngFor="let sizeOfProduct of sizeOfProduct">
+                                                    <input type="radio" name="size" [value]="sizeOfProduct.size_value" (change)="onsizechange(sizeOfProduct.size_value)">
+                                                    <span class="cr">
+                                                        {{ this.sizeOfProduct.size_value }}
+                                                    </span>
+                                                </label><br>
+                                                <span class="error error">{{this.size_err}}</span>
+                                            </div>
+                                        </div>
+                                        <p class="pro-description-title" *ngIf="colorOfProduct && colorOfProduct[0].color_name != null ">Select Color</p>
+                                        <div class="color-check pb-0" *ngIf="colorOfProduct && colorOfProduct[0].color_name != null ">
+                                            <div class="radio mt-0 mb-0">
+                                                <label class="color-check-inner" *ngFor="let colorOfProduct of colorOfProduct">
+                                                    <input type="radio" name="color" value="colorOfProduct.color_name" (change)="oncolorchange(colorOfProduct.color_name,colorOfProduct.color_code)">
+                                                    <span class="cr color-circle" [style.background-color]="colorOfProduct.color_name"></span>
+                                                </label><br>
+                                                <span class="error error">{{this.color_err}}</span>
+                                            </div>
+                                        </div>
+                                        <span class="error error">{{this.sizecolor_err}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="description-block mt-2">
+                                <div class="pro-description-title mb-3">Product Description</div>
+                                <div class="product-detail" [innerHTML]="product_ldescription"></div>
+                            </div>
+                            <div class="installation-block mt-20" *ngIf="results && results.need_installation == '1'">
+                                <div class="col-4 col-sm-3 col-md-3 col-lg-3 col-xl-3 p-0 pro-description-title">Installation</div>
+                                <div class="col-8 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0 fontsize-14 view-block color-dgray fontfamily-semibold mt-0">
+                                    <a href="JavaScript:Void(0);" class="view-text" (click)="instllationPopup();">view more</a> <mat-icon class="view-arrow">keyboard_arrow_down</mat-icon></div>
+                            </div>
+                            <div class="rating-review-block mt-2">
+                                <div class="col-4 col-sm-3 col-md-3 col-lg-3 col-xl-3 p-0 pro-description-title">Rating & Reviews</div>
+                                <div class="col-8 col-sm-9 col-md-9 col-lg-9 col-xl-9">
+                                    <div class="row">
+                                        <div class="col-12 col-sm-5 col-md-5 col-lg-5 col-xl-5 p-0">
+                                            <div class="avg-rating">4.2 <mat-icon>grade</mat-icon></div>
+                                            <div class="rating-text">1250 Rating &<br> 1048 Reviews</div>
+                                        </div>
+                                        <div class="col-12 col-sm-7 col-md-7 col-lg-7 col-xl-7 p-0">
+                                            <ul class="rating-progress-list">
+                                                <li>
+                                                    <div class="star">5 <mat-icon>grade</mat-icon></div>
+                                                    <div class="rating-progress">
+                                                        <mat-progress-bar mode="determinate" value="50"></mat-progress-bar>
+                                                    </div>
+                                                    <div class="total-star">9145</div>
+                                                </li>
+                                                <li>
+                                                    <div class="star">4 <mat-icon>grade</mat-icon></div>
+                                                    <div class="rating-progress">
+                                                        <mat-progress-bar mode="determinate" value="75"></mat-progress-bar>
+                                                    </div>
+                                                    <div class="total-star">2145</div>
+                                                </li>
+                                                <li>
+                                                    <div class="star">3 <mat-icon>grade</mat-icon></div>
+                                                    <div class="rating-progress">
+                                                        <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+                                                    </div>
+                                                    <div class="total-star">945</div>
+                                                </li>
+                                                <li>
+                                                    <div class="star">2 <mat-icon>grade</mat-icon></div>
+                                                    <div class="rating-progress">
+                                                        <mat-progress-bar mode="determinate" value="20"></mat-progress-bar>
+                                                    </div>
+                                                    <div class="total-star">445</div>
+                                                </li>
+                                                <li>
+                                                    <div class="star">1 <mat-icon>grade</mat-icon></div>
+                                                    <div class="rating-progress">
+                                                        <mat-progress-bar mode="determinate" value="10"></mat-progress-bar>
+                                                    </div>
+                                                    <div class="total-star">545</div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
+                            <div class="price-block">
+                                    <ul class="price-list">
+                                        <li class="price-item" *ngIf="usertype != 'company'">
+                                            <div class="alert alert-danger elementfadeInfadeout">Please select <b>minimum order quantity {{moq}}</b></div>
+                                        </li>
+                                        <li class="price-item">
+                                            <div class="left-lable">Basic Price</div>
+                                            <div class="right-price" [innerHTML]="basicprise">₹ {{product_dprice}}</div>
+                                        </li>
+                                        <li class="price-item update-qty">
+                                            <div class="left-lable">Order Quantity</div>
+                                            <div class="right-price">
+                                                <div fxLayout="row wrap" fxLayoutAlign="start start" *ngIf="results && results.product_id != ''">
+                                                    <div class="pm-counting-block">
+                                                        <img (click)="minus(results.product_id,result.quantity,product_dprice,taxOfProduct)" src="../../../assets/images/c-minus.png" class="c-counting-minus" *ngIf="usertype != 'company'">
+
+                                                        <img (click)="plus(results.product_id,result.quantity,product_dprice,taxOfProduct)" src="../../../assets/images/c-plus.png" class="c-counting-plus" *ngIf="usertype != 'company'">
+                                                        <input style="width:15%" type="text" class="c-counting-num" [(ngModel)]="result.quantity" (change)="onSelectionChangeInput(results.product_id,result.quantity,product_dprice,taxOfProduct)" min="1" *ngIf="usertype == 'company'" disabled>
+                                                        <input style="width:15%" type="text" class="c-counting-num" [(ngModel)]="result.quantity" (change)="onSelectionChangeInput(results.product_id,result.quantity,product_dprice,taxOfProduct)" min="1" *ngIf="usertype != 'company'">
+                                                    </div>
+                                                    <p class="error" *ngIf="errId==result.id && qtyerr!=''">{{qtyerr}}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="price-item">
+                                            <div class="left-lable" style="height: 20px;"><b>Total Amount</b><br>
+                                                <div class="gsmall">(without GST)</div>
+                                            </div>
+                                            <div class="right-price">₹ {{pregst}} </div>
+                                        </li>
+                                        <hr style="margin-top: 18px; margin-bottom: 8px;">
+                                        <li class="price-item">
+                                            <div class="left-lable"> GST @ {{taxOfProduct}} %</div>
+                                            <div class="right-price">₹ {{taxwithgst}} </div>
+                                        </li>
+                                        <hr style="margin-top: 18px; margin-bottom: 8px;" *ngIf="session.user_id>0 && session.user_type=='company'"/>
+                                        <li *ngIf="session.user_id>0 && session.user_type=='company'">
+                                            <!-- <div class="left-icon">
+                                                <img class="list-img" src="../../../assets/images/topay.png"/>
+                                            </div> -->
+                                            <div class="right-text hightlight">Your consignment will be shipped through "Topay basis", To know more <br><span class="shipping color-text" (click)="openDialog()">View Detail</span></div>
+                                        </li>
+                                        <hr style="margin: 8px 0;">
+                                        <li class="price-item total-price-block relative">
+                                            <div class="left-lable tp">Payable Amount</div>
+                                            <div class="right-price tp">₹ {{ totalamnt }}</div>
+                                        </li>
+                                        <li class="relative">
+                                            <p class="error amt-error" *ngIf="amount_err">{{amount_err}}</p>
+                                        </li>
+                                        <ng-template [ngIf]="results && results.moq <= result.quantity" [ngIfElse]="elseTemplate">
+                                            <div class="button-block mobile-block-wrapper display-b w-100" fxLayout="row" fxLayout.gt-xs="row">
+                                                <button (click)="addtocart(results.product_id,result.quantity)" mat-button class="btn  btn-shadow1 btn-mr-right custom-btn add-color" ng-if="results.product_unit > '0' ">
+                                                    <mat-icon class="color-white">shopping_cart</mat-icon>Add to Cart
+                                                </button>
+                                                <button (click)="buynow(results.product_id,result.quantity)" mat-button class="btn  btn-shadow1 custom-btn buy-color" ng-if="results.product_unit > '0' ">
+                                                    <mat-icon class="color-white">add_shopping_cart</mat-icon>Buy Now
+                                                </button>
+                                            </div>
+                                        </ng-template> 
+                                        <ng-template #elseTemplate>
+                                            <div class="button-block mobile-block-wrapper display-b w-100" fxLayout="row" fxLayout.gt-xs="row">
+                                                <a mat-button class="btn  btn-shadow1 btn-mr-right custom-btn add-color disabled" ng-if="results.product_unit > '0' ">
+                                                    <mat-icon class="color-white">shopping_cart</mat-icon>Add to Cart
+                                                </a>
+                                                <a mat-button class="btn  btn-shadow1 custom-btn buy-color disabled" ng-if="results.product_unit > '0' ">
+                                                    <mat-icon class="color-white">add_shopping_cart</mat-icon>Buy Now
+                                                </a>
+                                            </div>
+                                        </ng-template> 
+                                    </ul>
+                                </div>
+                                
+                            <div class="need-block">
+                               <ul class="need-list">
+                                <li style="align-items: baseline;">
+                                    <div class="left-icon">
+                                        <img class="call-img" width="13px" height="auto" src="../../../assets/images/call.png"/>
+                                    </div>
+                                    <div class="right-text">Need Assistance Call Us <a class="call color-text" href="tel:{{this.customernumber}}">{{this.customernumber}}</a></div>
+                                </li>
+                                <li>
+                                    <div class="left-icon">
+                                        <img class="list-img" src="../../../assets/images/call-back.png"/>
+                                    </div>
+                                    <div class="right-text">Bulk Buy Want A <span class="callback color-text" (click)="openCallbackDialog()">Call Back</span></div>
+                                </li>
+                                <!-- <li>
+                                    <div class="left-icon">
+                                        <img class="list-img" src="../../../assets/images/topay.png"/>
+                                    </div>
+                                    <div class="right-text">Want To Pay Shipping <span class="shipping color-text" (click)="openDialog()">View Detail</span></div>
+                                </li> -->
+                               </ul>
+                            </div>
+                            <div class="points-block">
+                                <ul class="point-list">
+                                    <li class="points">10 Days Replacements</li>
+                                    <li class="points">100% Geniune Products</li>
+                                    <li class="points">No Warranty</li>
+                                    <li class="points">Secure and Easy Payments</li>
+                                    <li class="points">Easy Returns <span class="view color-text"       (click)="openEasyReturnDialog()">View More</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative" *ngIf="review.length>0">
+                        <span class="display-b fontsize-14 color-dgray fontfamily-semibold mt-30 mb-1 text-underline">{{review.length}} Reviews</span>
+                        <div class="reviews-content border-b mt-3" *ngFor="let reviewrow of review">
+                            <div class="" fxLayout="row" fxLayoutAlign="space-between top">
+                                <div class="" fxLayout="row">
+                                    <img src="{{userimgLink}}/{{reviewrow.fk_user_id}}/{{reviewrow.profile_pic}}" class="display-ib round-40 mr-2" />
+                                    <div>
+                                        <span class="color-black fontsize-14 display-b">{{reviewrow.name}}</span>
+                                        <mat-icon *ngIf="reviewrow.rating>=1" class="color-green">star</mat-icon>
+                                        <mat-icon *ngIf="reviewrow.rating>=2" class="color-green">star</mat-icon>
+                                        <mat-icon *ngIf="reviewrow.rating>=3" class="color-green">star</mat-icon>
+                                        <mat-icon *ngIf="reviewrow.rating>=4" class="color-green">star</mat-icon>
+                                        <mat-icon *ngIf="reviewrow.rating>=5" class="color-green">star</mat-icon>
+                                    </div>
+                                </div>
+                                <div class=""  fxLayout="column">
+                                    <span class="color-gray fontsize-12">{{reviewrow.rate_date}}</span>
+                                </div>                            
+                            </div>
+                            <div class="mb-3" fxflex="100" fxLayout="row">
+                                <span class="color-gray fontsize-14">{{reviewrow.reviews}}</span>
+                            </div>
+                        </div>
+                        <!-- <div class="reviews-content mt-3 mb-5">
+                            <a href="#" class="color-orange fontsize-14 a_hover_orange">
+                                Show More Reviews
+                            </a>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="border-t1 pt-4">
+                    <h5 class="h5 fontfamily-semibold color-black">Similar Products</h5>
+                    <div class="related-product-slider">
+                        <owl-carousel-o [options]="productSlider">
+                            <ng-template carouselSlide *ngFor="let relativeproduct of similarproduct">
+                                <a href="/productcart/{{relativeproduct.parent_category_name | removewhitespaces | lowercase }}/{{relativeproduct.category_name | removewhitespaces | lowercase}}/{{relativeproduct.product_id}}" class="product-box">
+                                    <div class="product-img-div">
+                                        <img src="{{link}}/{{relativeproduct.product_id}}/{{relativeproduct.image}}" class="product-img">
+                                        <!-- <a *ngIf="relativeproduct.product_unit>0" href="javascript:void(0)" (click)="addtocart(relativeproduct.product_id,1)" class="addcard">ADD TO CART</a> -->
+                                    </div>
+                                    <div class="product-price">
+                                        <p class="similarproduct-title">{{((relativeproduct.product_name).length>20)?(relativeproduct.product_name | slice:0:20)+'...':(relativeproduct.product_name) }}</p>
+                                        <span class="new-price fontfamily-Heavy">₹ {{relativeproduct.product_dprice}}</span>
+                                        <del class="old-price fonnfamily-medium">₹ {{relativeproduct.product_price}}</del>
+                                    </div>
+                                </a>
+                            </ng-template>
+                        </owl-carousel-o>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>    
+

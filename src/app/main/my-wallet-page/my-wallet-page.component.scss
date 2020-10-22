@@ -1,0 +1,108 @@
+@import '../../../assets/scss/layout.scss';
+
+// cwol-sec-1
+.my-wallet-sec-1{
+    /*padding-top: 0px;*/
+    padding-bottom: 70px;
+
+    .left-white-box{
+        box-shadow: 0px 0px 5px 0px rgba(138,138,138,0.26);
+
+        .white-inner-bottom-block{
+            width: 100%;
+            padding: 0px 16px 16px 16px;
+            position: relative;
+           
+            span.fontsize-16.color-dgray{
+                @media (max-width: 600px){
+                    margin-left: 52px;
+                }
+            }
+
+            .c-product-bg{
+                width: 116px;
+                height: 116px;
+                background: #F6F6F6;
+                padding: 10px;
+                text-align: center;
+                display: flex;
+
+                .c-product-img{
+                    margin: 0 auto;
+                    align-self: center;
+                    align-items: center;
+                }
+            }
+            .c-product-detail{
+
+                .c-remove-green{
+                    position: absolute;
+                    bottom: 0px;
+                    padding: 0px;
+                }
+               
+            }
+            .pm-counting-block{
+                margin-top: 10px;
+                padding: 0 20px;
+                .c-counting-minus{
+                    cursor: pointer;
+                }
+                .c-counting-plus{
+                    cursor: pointer;
+                }
+                .c-counting-num{
+                    font-size: 14px;
+                    font-weight: 700;
+                    color: #767676;
+                    padding: 0px 10px;
+                    line-height: 24px;
+                    display: inline-block;
+                }
+            }
+            
+
+        }
+        
+        .c-border-divider{
+            border-bottom: 1px solid #E0E0E0;
+            width: 96%;
+            margin: 16px auto;
+            @media (max-width: 991px){
+                width: 95%;
+                margin: 16px auto; 
+            }
+            @media (max-width: 600px){
+                width: 90%;
+                margin: 16px auto;   
+            }
+        }
+        .bottom-ft{
+            box-shadow: 0px 0px 5px 0px rgba(138,138,138,0.26);
+            background: #fff;
+            padding: 16px;
+            width: 100%;
+        }
+
+    }
+    .right-white-box{
+        box-shadow: 0px 0px 5px 0px rgba(138,138,138,0.26);
+
+        .c-border-divider{
+            border-bottom: 1px dashed #E0E0E0;
+            width: 93%;
+            margin: 16px 16px;
+        }
+    }
+
+
+    .mat-autocomplete-panel {
+        max-height: 45px !important;
+        }
+
+}
+.success{
+    color: green;
+    font-size: 13px;
+    text-align: center;
+}

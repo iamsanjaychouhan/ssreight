@@ -1,0 +1,35 @@
+<div class="relative">
+    <a class="crose-icon" mat-dialog-close>
+        <img src="../../../assets/images/cencel-icon.svg" alt="" />
+    </a>
+    <mat-dialog-content class="modal-sm" style="max-height:90vh;">
+        <div class="align-center mb-3">
+            <h2 mat-dialog-title class="fontsize-24 color-black fontfamily-bold mb-2" >Project Enquiry</h2>
+            <span class="fontsize-12 fontfamily-regular">Enter details for project enquiry.</span>
+        </div> 
+        <form class="example-form" #ProjectEnquiryForm="ngForm">       
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Name" [(ngModel)]="enq_name" pattern="[a-zA-Z ]*" name="enq_name" required>
+                <p class="error" *ngIf="enq_name_err">{{enq_name_err}}</p>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Company Name" [(ngModel)]="enq_company_name" pattern="^[A-Za-z0-9 ]*$" name="enq_company_name" required>
+                <p class="error">{{enq_company_name_err}}</p>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Email" [(ngModel)]="email_address" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="email_address" required>
+                <p class="error">{{email_address_err}}</p>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Phone No." [(ngModel)]="phone_number" minlength="10" maxlength="10" pattern="[0-9]+" name="phone_number" required>
+                <p class="error">{{phone_number_err}}</p>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <textarea matInput placeholder="Message" [(ngModel)]="message" name="message" required></textarea>
+                <p class="error">{{message_err}}</p>
+            </mat-form-field>
+            <button (click)="onSubmit()" class="btn btn-green btn-shadow mt-20" mat-button [disabled]="!ProjectEnquiryForm.form.valid">Submit</button>
+            <p class="success">{{success}}</p>
+        </form>
+    </mat-dialog-content>
+</div>

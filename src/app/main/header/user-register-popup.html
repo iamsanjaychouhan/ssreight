@@ -1,0 +1,44 @@
+<div class="relative">
+    <a class="crose-icon" mat-dialog-close>
+        <img src="../../../assets/images/cencel-icon.svg" alt="" />
+    </a>
+    <mat-dialog-content class="modal-sm" style="max-height:90vh;">
+        <div class="align-center mb-3">
+            <h2 mat-dialog-title class="fontsize-24 color-black fontfamily-bold mb-2" >Sign Up As User</h2>
+            <span class="fontsize-12 fontfamily-regular">Signup to start shopping</span>
+        </div>
+        <form class="example-form" #UserRegisterForm="ngForm">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="First Name" [(ngModel)]="firstName" name="firstName" id="firstName" pattern="[A-Za-z-_ ]{1,30}" required>
+                <p class="error" *ngIf="firstName_err">{{firstName_err}}</p>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Last Name" [(ngModel)]="last_name" name="last_name" id="last_name" pattern="[A-Za-z-_]{1,30}" required>
+                <p class="error" *ngIf="last_name_err">{{last_name_err}}</p>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Mobile No." [(ngModel)]="mobile_no" name="mobile_no" id="mobile_no" minlength="10" maxlength="10" pattern="^[6-9]\d{9}$" required>
+                <p class="error" *ngIf="mobile_no_err">{{mobile_no_err}}</p>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Email" [(ngModel)]="email_id" name="email_id" id="email_id" type="email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                <p class="error" *ngIf="email_id_err">{{email_id_err}}</p>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput type="password" placeholder="Password" [(ngModel)]="password" name="password" id="password" minlength="6" required>
+                <p class="error" *ngIf="password_err">{{password_err}}</p>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput type="password" placeholder="Confirm Password" [(ngModel)]="confirm_password" name="confirm_password" minlength="6" id="confirm_password" required>
+                <p class="error" *ngIf="confirm_password_err">{{confirm_password_err}}</p>
+            </mat-form-field>            
+
+            <button (click)="onSubmit()" class="btn btn-green btn-shadow" mat-button [disabled]="!UserRegisterForm.form.valid">Signup</button>
+
+            <div class="align-center mt-2">
+                <span class="fontsize-14 fontfamily-regular color-black">Already have an account ? <a (click)="loginPopup()" mat-dialog-close class="color-orange">Login</a>
+                </span>
+            </div>
+        </form>
+    </mat-dialog-content>
+</div>

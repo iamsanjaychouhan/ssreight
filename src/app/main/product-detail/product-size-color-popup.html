@@ -1,0 +1,94 @@
+<div class="relative">
+    <a class="crose-icon" mat-dialog-close>
+        <img src="../../../assets/images/cencel-icon.svg" alt="" />
+    </a>
+    <mat-dialog-content class="modal-sm">
+        <div class="align-center mb-3">
+            <h2 mat-dialog-title class="fontsize-24 color-black fontfamily-bold mb-0">Size & Colors</h2>
+            <span class="fontsize-12 fontfamily-regular">Select of size and colors for your product</span>
+        </div>
+        <!-- <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" *ngFor="let sizeOfProduct of sizeOfProduct">
+                <p>{{ sizeOfProduct.size_value }}</p>
+            </div> -->
+            <!-- <p>{{ sop }}</p> -->
+            <!-- <p>{{ dialogConfig.data }}</p> -->
+            <!-- <p>{{ sizeOfProduct }}</p> -->
+            <!-- <p>{{ sizeOfProduct.size_value }}</p> -->
+            <!-- <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" *ngFor="let sizeOfProduct of sizeOfProduct">
+                <p>{{ sizeOfProduct.size_value }}</p>
+            </div> -->
+            {{ data }}
+        <form class="example-form pb-2">
+            <p class="color-black fontsize-16 mt-3 mb-3">Size</p>
+            <div class="size-check border-b pb-3">
+                <div class="radio mt-0 mb-0">
+                    <!-- <input matInput [(ngModel)]="data.name"> -->
+                    <!-- <label class="size-check-inner" *ngIf="let sizeOfProduct of sizeOfProduct">
+                        <input type="radio" name="size" value="">
+                        <span class="cr">
+                           {{ sizeOfProduct.size_value }}
+                        </span>
+                    </label> -->
+                    <label class="size-check-inner">
+                        <input type="radio" name="size" value="">
+                        <span class="cr">6</span>
+                    </label>
+                    <label class="size-check-inner">
+                        <input type="radio" name="size" value="">
+                        <span class="cr">7</span>
+                    </label>
+                    <label class="size-check-inner">
+                        <input type="radio" name="size" value="">
+                        <span class="cr">8</span>
+                    </label>
+                    <label class="size-check-inner">
+                        <input type="radio" name="size" value="">
+                        <span class="cr">9</span>
+                    </label>
+                    <label class="size-check-inner">
+                        <input type="radio" name="size" value="">
+                        <span class="cr">10</span>
+                    </label>
+                    <label class="size-check-inner">
+                        <input type="radio" name="size" value="">
+                        <span class="cr">11</span>
+                    </label>
+                    <label class="size-check-inner">
+                        <input type="radio" name="size" value="">
+                        <span class="cr">12</span>
+                    </label>
+                </div>
+            </div>
+            <p class="color-black fontsize-16 mt-4 mb-3">Color</p>
+            <div class="color-check pb-3">
+                <div class="radio mt-0 mb-0">
+                    <label class="color-check-inner">
+                        <input type="radio" name="color" value="">
+                        <span class="cr" style="background: #D4F3A7;"></span>
+                    </label>
+                    <label class="color-check-inner">
+                        <input type="radio" name="color" value="">
+                        <span class="cr" style="background: #01ABC5;"></span>
+                    </label>
+                    <label class="color-check-inner">
+                        <input type="radio" name="color" value="">
+                        <span class="cr" style="background: #C28657;"></span>
+                    </label>
+                    <label class="color-check-inner">
+                        <input type="radio" name="color" value="">
+                        <span class="cr" style="background: #FF8913;"></span>
+                    </label>
+                    <label class="color-check-inner">
+                        <input type="radio" name="color" value="">
+                        <span class="cr" style="background: #767676;"></span>
+                    </label>
+                    <label class="color-check-inner">
+                        <input type="radio" name="color" value="">
+                        <span class="cr" style="background: #608D20;"></span>
+                    </label>
+                </div>
+            </div>
+            <button mat-button class="btn btn-green btn-shadow1">NEXT</button>
+        </form>
+    </mat-dialog-content>
+</div>

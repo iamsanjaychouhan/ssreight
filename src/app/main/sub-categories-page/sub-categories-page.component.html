@@ -1,0 +1,35 @@
+<section class="home-sec-2">
+    <div class="container">
+        <div class="breadcrums">
+            <a href="/" class="page-bradcum">Home </a> <mat-icon class="right-arrow">navigate_next</mat-icon>
+            <a href="" class="page-bradcum">Shop by Sub Categories</a>
+        </div>
+        <div class="page-title-block" fxLayout="column" fxLayout.gt-xs="row" fxLayoutAlign="start start" fxLayoutAlign.gt-xs="space-between center" fxLayoutGap="20px">
+            <div fxLayout="column">
+                <h4 class="subcat-title">Sub Categories</h4>
+            </div>
+            <!-- <div fxLayout="column">
+                <mat-form-field appearance="outline" class="mat-outline-height">
+                    <mat-label>Sort by</mat-label>
+                    <mat-select (selectionChange)="categorylist($event.value)">
+                        <mat-option *ngFor="let subcategorie of subcategories" [value]="subcategorie.value">
+                        {{subcategorie.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div> -->
+        </div>
+        <div class="row">
+            <ul class="category-wrapper">    
+                <li class="cat-product-box" *ngFor="let result of results">
+                    <a href="product/{{result.parent_category_name | removewhitespaces | lowercase }}/{{result.category_name | removewhitespaces | lowercase}}/{{result.category_id}}" class="product-box">
+                        <div class="product-img-div">
+                            <img src="{{link}}{{result.category_image}}" class="product-img">
+                        </div>
+                        <p class="product-cat-title">{{result.category_name}}</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>

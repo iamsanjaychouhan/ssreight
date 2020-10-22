@@ -1,0 +1,27 @@
+@import '../../../assets/scss/layout.scss';
+
+// cwol-sec-1
+.thankyou-sec-1{
+	background: #fff;
+	min-height: 400px;
+	padding-top: 20px;
+   
+.thankyou-height{
+    @media(min-width: 1920px) {
+        height: 431px;
+    }
+}
+
+}
+.check-icon{
+	width: 40px;
+	height: 40px;
+}
+.custom-btn{
+	width: 190px;
+	height: 38px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    font-family: "Roboto", sans-serif;
+}

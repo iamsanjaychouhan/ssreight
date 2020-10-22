@@ -1,0 +1,130 @@
+<section class="cwol-sec-1 empty-cart-section" *ngIf="cartcount == 0;else showcart;">
+  <div class="container">
+    <ngx-spinner bdColor = "rgba(51,51,51,0.8)" size = "medium" color = "#fff" type = "ball-spin-clockwise" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+    <div class="row">
+      <div class="col-12">
+        <div class="empty-cart-wrapper">
+          <img class="e-cart-img" src="../../../assets/images/empty-dbag.png">
+          <p class="text-title">Your cart is empty</p>
+          <a href="/"><button class="btn btn-green btn-shadow shopping-btn">Continue Shopping</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<ng-template #showcart>
+    <section class="cwol-sec-1">
+        <div class="container">
+            <div class="" fxLayout="column" fxLayout.gt-xs="column" fxLayout.gt-sm="row" fxLayoutAlign="start start" fxFlex="100" fxLayoutGap="30px">
+                <div class="left-white-box mb-20" fxLayout="column" fxLayoutAlign="start start" fxFlex="70">
+                    <h5 class="color-dgray fontsize-16 fontfamily-bold mt-0 mb-0 py-3 px-3 border-b" style="width: 100%;">My Cart ({{cartcount}})</h5>
+                    <ul class="order-summery-list">
+                        <li class="white-inner-bottom-block" fxLayout="column" fxLayoutAlign="start start" *ngFor="let result of results">
+                            <div class="product-content" fxLayout="column" fxLayout.gt-xs="row wrap" fxFlex="100" style="width: 100%;max-width: 100%;">
+                                <div class="image-block" fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="14" fxFlex.gt-sm="18" fxFlex.gt-md="14">
+                                    <a href="productcart/{{result.parent_category_name | removewhitespaces | lowercase }}/{{result.category_name | removewhitespaces | lowercase}}/{{result.product_id}}" class="">
+                                        <div class="c-product-bg">
+                                            <img src="{{link}}{{result.product_id}}/{{result.image_name}}" class="c-product-img">
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="right-detail-block" fxLayout="row" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="85" fxFlex.gt-sm="80" fxFlex.gt-md="85">
+                                    <div class="c-product-detail">
+                                        <a href="" class="color-black fontsize-16 d-flex mb-10">{{result.product_name}}</a>
+                                        <span class="new-price mr-10">₹ {{result.sub_total}}</span>
+                                        <del class="fontsize-14 color-gray mr-10">₹ {{result.product_price}}</del>
+                                        <span class="fontsize-12 color-red mr-10">You Save  {{result.percent}}</span>
+                                        <br>
+                                        <span class="fontsize-12" style="margin-right: 10px;">Quantity : {{result.quantity}}</span>
+                                        <span class="fontsize-12" *ngIf="result.size != null && result.size != '' ">Size : {{result.size}}</span>
+                                        <span class="fontsize-12" *ngIf="result.color != null && result.color != '' ">Color : {{result.color}}</span>
+                                    </div>
+                                    <div class="update-item-block" fxLayout="column">
+                                       <div class="update-inner-block" fxLayout="row wrap" fxLayoutAlign="end">
+                                            <div class="pm-counting-block" *ngIf="session.user_type !='company'">  
+                                                <img (click)="minus(result.id,result.cart_id,result.product_id,result.quantity,result.moq,result.size,result.color)" src="../../../assets/images/c-minus.png" class="c-counting-minus">
+                                                    <input style="width:40%" type="text" class="c-counting-num" [(ngModel)]="result.quantity" disabled>
+                                                <img (click)="plus(result.id,result.cart_id,result.product_id,result.quantity,result.size,result.color)" src="../../../assets/images/c-plus.png" class="c-counting-plus">
+                                            </div>
+                                            <p class="error" *ngIf="errId==result.id && qtyerr!=''">{{qtyerr}}</p>
+                                            <div title="Delete Product" (click)="removeItemConfirmationPopup(result.id,result.cart_id,result.product_id)" class="d-flex c-remove-text removebtn"><mat-icon class="delete-icon">delete</mat-icon> Remove</div>
+                                        </div>
+                                        <div class="error" fxLayoutGap="10px" *ngIf="moq_err">
+                                            {{moq_err}}{{result.moq}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>                   
+                    <div class="bottom-ft" fxLayout="column" fxLayoutAlign="start start" fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center" fxFlex="100">
+                        <a href="" class="shopping-link">Continue Shopping</a>
+                        <a routerLink="/checkout" class="btn btn-green btn-shadow custom-btn">Checkout</a>
+                    </div>
+                </div>
+                <div class="right-white-box sidebar-sticky mb-20" fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="100" fxFlex.gt-sm="32.3" style="width:100%;">
+                        <h5 class="color-dgray fontsize-16 fontfamily-bold mt-0 mb-0 py-3 px-3">Price Details</h5>
+                    <ul class="cart-item-total">
+                        <li class="border-t">
+                            <div class="left-lable-block">Sub Total</div>
+                            <div class="right-price-block">₹ {{subtotal}}</div>
+                        </li>
+
+                        <li class="">
+                            <div class="left-lable-block">Tax</div>
+                            <div class="right-price-block">₹ {{totaltax}}</div>
+                        </li>
+
+                        <li class="" *ngIf="shipdata !='' && shipdata !='0';else topay">
+                            <div class="left-lable-block">Shipping</div>
+                            <div class="right-price-block">₹ {{shipdata}}</div>
+                        </li>
+                        <li>
+                            <div class="right-text hightlight">Your consignment will be shipped through "Topay basis", To know more <span class="shipping color-text" (click)="openShippingDialog()">View Detail</span></div>
+                        </li>
+                        <li *ngIf="coupondiscount!=''" class="">
+                            <div class="left-lable-block">Coupon Discount</div>
+                            <div class="right-price-block">-₹ {{coupondiscount}}</div>
+                        </li>
+
+                        <li class="c-border-divider mt-0 mb-2"></li>
+                        <li class="mb-3">
+                            <div class="left-lable-block finsize">Total</div>
+                            <div class="right-price-block finsize">₹ {{totalprice}}</div>
+                            <p class="error error" *ngIf="amount_err">{{amount_err}}</p>
+                        </li>
+                    </ul>
+                        <div class="pl-3 pr-3 pt-10 pb-10 border-t" fxLayout="row" fxLayoutAlign="space-between center" fxFlex="100" style="width: 100%;">
+                            <span class="color-lgray">Delivery within 4-7 working days</span>
+                        </div>                        
+                        <div *ngIf="couponid!=''" class="pl-3 pr-3 pt-10 pb-20" fxLayout="row" fxLayoutAlign="space-between center" fxFlex="100" style="width: 100%;">
+                            <span class="pl-10 pr-10 pt-20 pb-20 d-flex color-gray" fxLayoutAlign="space-between center" style="border: 1px dashed #767676;width: 100%;background: #F6F6F6;">{{couponcode}} <br/> Offer applied on the bill<span class="color-orange cursor" (click)="coupanAppliedPopup(couponcode,totalprice,'delete')">Remove</span></span>
+                        </div>
+                </div>
+            </div>            
+        </div>
+    </section>
+</ng-template>
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" (click)="closeNav();"><img src="../../../assets/images/side-pannel-close.png" class=""> </a>
+    <div>
+        <h5 class="fontsize-14 color-dgray mt-30 mb-20">Promo Code</h5>
+        <div class="border-b mb-15" fxLayout="row" fxLayoutAlign="space-between start">
+          <mat-form-field appearance="outline" style="width: 225px;">
+              <mat-label>Enter Promocode</mat-label>
+              <input matInput placeholder="Placeholder">
+          </mat-form-field>
+          <button class="btn btn-orange ml-15" style="width: 88px;height: 59px;margin-top: .25em;">Apply</button>
+        </div>
+        <h5 class="fontsize-14 color-dgray mt-10 mb-20">Other Offers</h5>
+        <div class="mb-15 coupon-main-box" fxLayout="column" fxLayoutAlign="start start" *ngFor="let coupon of coupons">
+          <h5 class="fontsize-14 color-dgray mt-0 mb-10">{{coupon.coupon_title}}</h5>
+            <div class="" fxLayout="row" fxLayoutAlign="space-between center" fxFill="fill">
+                <span class="fontsize-14 color-dgray mt-0 mb-0 coupon-code-span">{{coupon.coupon_code}}</span>
+                <span *ngIf="coupon.apply=='false'" class="fontsize-14 color-orange fontfamily-bold text-uppercase" (click)="coupanAppliedPopup(coupon.coupon_code,totalprice,'add')">Apply</span>
+                <span *ngIf="coupon.apply=='true'" class="fontsize-14 color-orange fontfamily-bold text-uppercase" >Applied</span>
+            </div>
+          <p class="error" *ngIf="errId==coupon.id && coupommessage!=''">{{coupommessage}}</p>
+        </div>  
+    </div>
+</div>

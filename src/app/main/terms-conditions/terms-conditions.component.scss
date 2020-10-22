@@ -1,0 +1,53 @@
+@import '../../../assets/scss/layout.scss';
+
+// term-conditn-sec-2
+.term-conditn-sec-1{
+    .header-bg-block{
+        background: #fff;
+        padding:  0;
+    }
+}
+
+.term-conditn-sec-2{
+    padding-top: 20px;
+    padding-bottom: 70px;
+    background: #fff;
+
+    .product-box{
+        position: relative;
+        margin-top: 30px;
+        display: block;
+        transition: ease-in 200ms;
+        .product-img{
+            position: relative;
+            width: 100%;
+            height:250px;
+            background: #F6F6F6;
+            img.product-img{
+                width: 100%;
+                height: 100%;
+                object-fit: scale-down;
+            }
+            span{
+                position: absolute;
+                bottom: 5px;
+                left: 0;
+                right: 0;
+                margin: auto;
+                width: 100%;
+                text-align: center;
+                padding: 0px 10px;
+                height: 50px;
+                align-items: center;
+                justify-content: center;
+                display: flex;
+            }
+        }
+    }
+
+    .mat-autocomplete-panel {
+        max-height: 45px !important;
+        }
+
+
+}

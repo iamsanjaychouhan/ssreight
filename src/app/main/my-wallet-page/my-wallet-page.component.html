@@ -1,0 +1,48 @@
+<section class="my-wallet-sec-1 pt-50">
+        <div class="container">
+            
+                <div class="" fxLayout="row" fxLayoutAlign="start start" fxFlex="100" fxLayoutGap="30px">
+                    <div class="left-white-box" fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlexOffset="0" fxFlex.gt-xs="70" fxFlexOffset.gt-xs="15">
+                        <h5 class="color-dgray fontsize-20 fontfamily-bold mt-0 mb-0 pt-25 pb-10 px-3">My Wallet</h5>
+                        <div class="breadcrums pt-0 pb-20  px-3">
+                                <span class="fontsize-14 color-lgray fontfamily-regular display-b mb-1">
+                                    <a href="/" class="a_hover_lgray color-lgray">Home </a> >
+                                    <a href="javascript:void(0)" class="a_hover_lgray color-lgray">Wallet</a>
+                                </span>
+                        </div>
+                        <div class="bottom-ft" fxLayout="column" fxLayout.gt-xs="row" fxLayoutAlign="start start" fxLayoutAlign.gt-xs="space-between center" fxFlex="100" fxLayoutGap="20px">
+                                <div fxLayout="row" >
+                                    <img src="../../../assets/images/wallet.png" class="mr-20">
+                                    <div fxLayout="column" >
+                                        <h4 class="fontsize-16 fontfamily-semibold color-green mt-0 mb-10">My Balance</h4>
+                                        <h3 class="fontsize-24 fontfamily-semibold color-green mb-0 mt-0">₹ {{totalamount}}</h3>
+                                    </div>
+                                </div>
+                                <!-- <button class="btn btn-green" style="width: 200px;" (click)="Withdrawdialogp();">Withdraw</button> -->
+                                <button class="btn btn-green" style="width: 200px;">Withdraw</button>
+                        </div>
+                        <div><h4 class="fontsize-20 color-black mt-30 mb-30 ml-20">All Transaction</h4></div>
+
+                        <div *ngFor="let result of results" class="white-inner-bottom-block pt-3" fxLayout="column" fxLayoutAlign="start start">
+                            <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-between start" fxFlex="100" fxLayoutGap="10px" style="width: 100%;max-width: 100%;">
+                                    <div fxLayout="row" >
+                                    <img *ngIf="result.type=='credit'" src="../../../assets/images/wallet-ups-img.png" class="mr-20" width="32" height="32">
+                                    <img *ngIf="result.type=='debit'" src="../../../assets/images/wallet-downs-img.png" class="mr-20" width="32" height="32">
+                                    <div fxLayout="column" >
+                                        <h4 class="fontsize-14 fontfamily-semibold color-dgray mt-0 mb-1">{{result.order_number}}</h4>
+                                        <p class="fontsize-12 fontfamily-semibold color-dgray mb-0 mt-0">{{result.created_on | date: 'dd/MM/yyyy'}} </p>
+                                    </div>
+                                </div>
+                                 <span class="fontsize-16 color-dgray">₹ {{result.balance}}</span>
+                            </div>
+                        </div>
+                        <div class="c-border-divider d-flex" fxLayout="column" fxLayoutAlign="start start" fxFlex="100"></div>
+ 
+                        <!-- <div class="px-3 py-3 mb-3" fxLayout="row" fxLayoutAlign="center center" fxFlex="100" style="width: 100%;max-width: 100%;">
+                            <a href="" class="color-orange fontsize-14 fontfamily-semibold text-underline">Load More</a>
+                        </div> -->
+                    </div>
+                </div>
+               
+            </div>
+</section>

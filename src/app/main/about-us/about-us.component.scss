@@ -1,0 +1,93 @@
+@import '../../../assets/scss/layout.scss';
+
+// about-us-sec-1
+.about-us-sec-1, 
+.about-us-sec-2, 
+.about-us-sec-3{
+    background:#fff;
+}
+.about-us-sec-1{
+    .bg-img-block{
+        background: url(/assets/images/about-us-bg.jpg);
+        background-repeat: no-repeat;
+        background-position: left top;
+        background-size: cover;
+        width: 100%;
+        height: 425px;
+        margin: 0px 15px;
+
+        @media (max-width: 600px){
+            height: 300px;
+        }
+    }
+    h1.fontsize-60.fontfamily-bold.color-white {
+        @media (max-width: 600px){
+            font-size: 40px;
+        }
+    }
+}
+
+.about-us-sec-2{
+    padding-top: 50px;
+    padding-bottom: 20px;
+
+    .product-box{
+        position: relative;
+        margin-top: 30px;
+        display: block;
+        transition: ease-in 200ms;
+        .product-img{
+            position: relative;
+            width: 100%;
+            height:250px;
+            background: #F6F6F6;
+            img.product-img{
+                width: 100%;
+                height: 100%;
+                object-fit: scale-down;
+            }
+            span{
+                position: absolute;
+                bottom: 5px;
+                left: 0;
+                right: 0;
+                margin: auto;
+                width: 100%;
+                text-align: center;
+                padding: 0px 10px;
+                height: 50px;
+                align-items: center;
+                justify-content: center;
+                display: flex;
+            }
+        }
+    }
+
+    .mat-autocomplete-panel {
+        max-height: 45px !important;
+        }
+
+
+}
+.about-us-sec-3{
+    padding-top: 10px;
+    padding-bottom: 30px;
+
+    p.fontsize-14.color-dgray.mb-30.mr-130{
+        @media (max-width: 991px){
+            margin-right: 30px;
+        }
+        @media (max-width: 600px){
+            margin-right: 0px;
+        }
+    }
+    p.fontsize-14.color-dgray.mb-30.mr-200{
+        @media (max-width: 991px){
+            margin-right: 0px;
+        }
+        @media (max-width: 600px){
+            margin-right: 0px;
+        }
+    }
+    
+}

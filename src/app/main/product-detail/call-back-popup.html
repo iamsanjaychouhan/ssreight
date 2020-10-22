@@ -1,0 +1,23 @@
+<h2 mat-dialog-title class="shipping-title">We are contact to you very soon</h2>
+<form class="example-form" #BulkBuyForm="ngForm">	
+	<div mat-dialog-content>
+	  <!-- <p>Please enter your activated contact mobile number.</p> -->
+	  <div class="form-group">
+	  		<!-- <input type="text" formControlName="phone" class="form-control" placeholder="Enter your mobile no." maxlength="10" minlength="10" [ngClass]="{ 'is-invalid': submitted && fval.phone.invalid }" pattern="[0-9]+" required />
+			<div *ngIf="submitted && fval.phone.errors" class="invalid-feedback">
+			    <div *ngIf="fval.phone.errors.required">Mobile number is required</div>
+			</div> -->
+			<mat-form-field class="example-full-width">
+                <input matInput placeholder="Mobile No." [(ngModel)]="bulkbuy_phone" minlength="10" maxlength="10" pattern="[0-9]+" name="bulkbuy_phone" required>
+                
+            </mat-form-field>
+	  </div>
+	</div>
+	<div mat-dialog-actions align="end">
+		<div class="form-group">
+			<button mat-button [mat-dialog-close]>No Thanks</button>
+			<button (click)="onSubmit()" mat-button cdkFocusInitial [disabled]="!BulkBuyForm.form.valid">Submit</button>
+		</div>
+	</div>
+	<p class="bulkbuy_phone_err">{{bulkbuy_phone_err}}</p>
+</form>

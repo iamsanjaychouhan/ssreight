@@ -1,0 +1,39 @@
+<div class="relative">
+    <a class="crose-icon" mat-dialog-close>
+        <img src="../../../assets/images/cencel-icon.svg" alt="" />
+    </a>
+    <mat-dialog-content class="modal-sm" style="max-height:90vh;">
+        <div class="align-center mb-3">
+            <h2 mat-dialog-title class="fontsize-24 color-black fontfamily-bold mb-2" >To Pay Shippment</h2>
+            <span class="fontsize-12 fontfamily-regular">Enter details for shipping.</span>
+        </div> 
+        <form class="example-form" #TopayShippmentForm="ngForm">       
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Name" [(ngModel)]="topay_name" pattern="[A-Za-z-_]{1,30}" name="topay_name" required>
+                <p class="error" *ngIf="topay_name_err">{{topay_name_err}}</p>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Mobile No." [(ngModel)]="topay_phone" minlength="10" maxlength="13" pattern="[0-9]+" name="topay_phone" required>
+                <p class="topay_phone_err">{{topay_phone_err}}</p>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Email" [(ngModel)]="topay_email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="topay_email" required>
+                <p class="topay_email_err">{{topay_email_err}}</p>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Address" [(ngModel)]="topay_address" name="topay_address" id="topay_address" required>
+                <p class="error" *ngIf="topay_address_err">{{topay_address_err}}</p>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Pincode" [(ngModel)]="topay_pincode" name="topay_pincode" id="topay_pincode" minlength="6" maxlength="6" pattern="[0-9]+" required>
+                <p class="error" *ngIf="topay_pincode_err">{{topay_pincode_err}}</p>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Preferred Courier" [(ngModel)]="preferred_courier" name="preferred_courier" id="preferred_courier" required required>
+                <p class="error" *ngIf="preferred_courier_err">{{preferred_courier_err}}</p>
+            </mat-form-field>
+            <button (click)="onSubmit()" class="btn btn-green btn-shadow mt-20" mat-button [disabled]="!TopayShippmentForm.form.valid">Submit</button>
+            <p class="success">{{success}}</p>
+        </form>
+    </mat-dialog-content>
+</div>

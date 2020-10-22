@@ -1,0 +1,40 @@
+<div class="relative">
+    <a class="crose-icon" mat-dialog-close>
+        <img src="../../../assets/images/cencel-icon.svg" alt="" />
+    </a>
+    <div class="align-left mb-4">
+      <h2 mat-dialog-title class="shipping-title">Available Offers</h2>
+      <ul>
+          <li class="offer">
+              <b>Bank Offer</b> 15% Unlimited Cashback on Axis Bank Credit Card <a href="#">T&C</a>
+          </li>
+          <li class="offer">
+              <b>EMI</b> starting from ₹18/month 
+              <a class="">
+                  <mat-accordion>
+                    <mat-expansion-panel (opened)="panelOpenState = true"
+                                         (closed)="panelOpenState = false" class="p-0">
+                      <mat-expansion-panel-header class="panel-head offer-panel-head" [collapsedHeight]="'28px'" [expandedHeight]="'30px'">
+                        <mat-panel-title class="panel-title">
+                         View Plans
+                        </mat-panel-title>
+                        <mat-panel-description>
+                          Currently I am {{panelOpenState ? 'open' : 'closed'}}
+                        </mat-panel-description>
+                      </mat-expansion-panel-header>
+                          <ul>
+                              <li class="offer">
+                                  <b>Bank Offer</b> 5% Unlimited Cashback on Credit Card <a href="#">T&C</a>
+                              </li>
+                              <li class="offer">
+                                  <b>EMI</b> starting from ₹68/month
+                              </li>
+                          </ul>
+                    </mat-expansion-panel>
+                  </mat-accordion>
+              </a>
+          </li>
+      </ul>
+    </div>
+
+</div>

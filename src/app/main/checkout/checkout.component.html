@@ -1,0 +1,656 @@
+<section class="cwol-sec-1">
+  <div class="container">
+    <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-spin-clockwise" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+    <div class="" fxLayout="column" fxLayout.gt-xs="column" fxLayout.gt-sm="row" fxLayoutAlign="start start" fxFlex="100" fxLayoutGap="30px">
+      <div class="left-white-box" fxLayout="column" fxLayoutAlign="start start" fxFlex.gt-xs="100" fxFlex.gt-sm="70" fxFlex="100" style="width: 100%;">
+        <div class="accor-main-block">
+          <!-- Login or Signup section start -->
+            <div class="accor-inner-block" *ngIf="usermobile==''">
+              <div class="accor-header-block step-process-header-green">
+                <span class="accor-icons accor-green-icon1"></span>
+                <span class="lable-title">LOGIN OR SIGN UP</span>
+              </div>
+              <form #LoginForm="ngForm">
+                <div class="accor-body-block">
+                  <div fxLayout="column" fxLayout.gt-xs="row" fxLayoutAlign="space-between start" fxFlex="100" fxLayoutGap="20px">
+                    <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="40" fxFill="fill">
+                      <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Email/Mobile Number" [(ngModel)]="username" name="username" required>
+                        <p class="error" *ngIf="username_err">{{username_err}}</p>
+                      </mat-form-field>
+                      <mat-form-field class="example-full-width mb-0">
+                        <input matInput type="password" placeholder="Password" [(ngModel)]="password" name="password" required>
+                        <p class="error" *ngIf="password_err">{{password_err}}</p>
+                      </mat-form-field>
+                      <button (click)="onSubmit()" class="btn btn-green custom-btn btn-shadow mb-4" mat-button [disabled]="!LoginForm.form.valid">Continue</button>
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="start end" fxFlex="100" fxFlex.gt-xs="60">
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="accor-inner-block" *ngIf="usermobile!=''">
+              <div class="accor-header-block step-process-header-transparent" fxLayoutAlign="space-between start">
+                <div>
+                  <span class="accor-icons accor-transparent-icon1"></span>
+                  <span class="lable-title">LOGGEDIN</span>
+                </div>
+                <div class="check-icon">
+                  <img class="lable-icon" src="../../../assets/images/accor-sucess-icon.png">
+                </div>
+              </div>
+              <div class="accor-body-block view-user-detail custom-flex">
+                <p class="user-name"><b>{{username}}</b> &nbsp; +91 {{usermobile}}</p>
+                <!-- <div class="change-btn">Change</div> -->
+              </div>
+            </div>
+          <!-- login section end here  -->
+          <!-- Buy type section-->
+            <div class="accor-inner-block" *ngIf="usermobile=='' ">
+              <div class="accor-header-block step-process-header-white">
+                <span class="accor-icons accor-white-icon2"></span>
+                <span class="lable-title">BUY FOR A</span> 
+              </div>
+              <div class="accor-body-block">
+                <div fxLayout="row" fxLayoutAlign="space-between start" fxFlex="100" fxLayoutGap="20px" >
+                  <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="40" fxFill="fill">
+                    <mat-radio-group aria-labelledby="Select an option" class="" [(ngModel)]="selectedoption">
+                    <mat-radio-button class="opt-select" [(ngModel)]="selected" *ngFor="let buytype of buytypes" [value]="buytype">
+                    {{buytype}}
+                    </mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="accor-inner-block" *ngIf="usermobile!='' && selectedoption !='Business' && selectedoption !='Personal'">
+              <div class="accor-header-block step-process-header-green">
+                <span class="accor-icons accor-green-icon2"></span>
+                <span class="lable-title">BUY FOR A</span>
+              </div>
+              <div class="accor-body-block pl-3">
+                <div fxLayout="row" fxLayoutAlign="space-between start" fxFlex="100" fxLayoutGap="20px" >
+                  <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="100" fxFill="fill">
+                    <mat-radio-group aria-label="Select an option" [(ngModel)]="selectedoption">
+                    <mat-radio-button value="Business" class="mr-5">Business</mat-radio-button>
+                    <mat-radio-button value="Personal">Personal</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="accor-inner-block" *ngIf="usermobile!='' && selectedoption !='' && selectedoption !=null ">
+              <div class="accor-header-block step-process-header-transparent" fxLayoutAlign="space-between start">
+                <div>
+                  <span class="accor-icons accor-transparent-icon2"></span>
+                  <span class="lable-title">BUY FOR A</span> 
+                </div>
+                <div class="check-icon">
+                  <img src="../../../assets/images/accor-sucess-icon.png" class="">
+                </div>
+              </div>
+              <div class="accor-body-block pt-0 custom-flex">
+                <p class="fontsize-16 color-dgray mb-0"><span class="fontsize-16 fontfamily-bold color-black">{{selectedoption}}</span></p>
+                <span *ngIf="selectedoption == 'Business'">
+                  <div (click)="changeselectedoption()" class="change-btn">Personal</div>
+                </span>
+                <span *ngIf="selectedoption == 'Personal'">
+                  <div (click)="changeselectedoption()" class="change-btn">Business</div>
+                </span>
+              </div>
+            </div>
+          <!-- Buy type section end-->
+          <!-- Show when user not logged in-->
+            <div class="accor-inner-block" *ngIf="usermobile=='' ">
+              <div class="accor-header-block step-process-header-white">
+                <span class="accor-icons accor-white-icon2"></span>
+                <span class="lable-title">DELIVERY ADDRESS</span> 
+              </div>
+            </div>
+          <!-- Show when user not logged in end here-->
+          <!-- Show when user logged in-->  
+            <div class="accor-inner-block" *ngIf="usermobile!='' && selectedoption !='Personal' && selectedoption !='Business' ">
+              <div class="accor-header-block step-process-header-white">
+                <span class="accor-icons accor-white-icon2"></span>
+                <span class="lable-title">DELIVERY ADDRESS</span> 
+              </div>
+              <div class="accor-body-block">
+                <p class="fontsize-16 fontfamily-bold color-black">{{username}}</p>
+                <p class="fontsize-16 fontfamily-bold color-black"> +91 {{usermobile}}</p>
+              </div>
+            </div>
+          <!-- Show when user logged in end here-->
+          <!-- show when buy type is selected-->              
+            <div class="accor-inner-block" *ngIf="selectedoption !='' && selectedoption !=null && addreslist !='' && selected=='' ">
+              <div class="accor-header-block step-process-header-green">
+                <span class="accor-icons accor-green-icon2"></span>
+                DELIVERY ADDRESS
+              </div>
+              <div class="accor-body-block pl-3">
+                <div fxLayout="column" fxFlex="100">
+                  <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" fxLayoutGap="20px" *ngFor="let address of addreslist;">
+                    <div fxLayout="row" fxLayoutAlign="start start">
+                      <mat-radio-group aria-label="Select an option" fxLayout="column" fxLayoutAlign="start start" class="delv-addrs">
+                        <mat-radio-button (click)="selectaddress(address.address_id)" value="1">
+                          <span class="address-title">{{address.a_name}}</span>
+                          <mat-chip-list aria-label="Fish selection">
+                            <mat-chip class="mat-chip-name">{{address.buytype}}</mat-chip>
+                          </mat-chip-list>
+                          <span class="address-title">+91 {{address.a_mobile}}</span>
+                          <p class="address-text">{{address.a_address}}, {{address.a_city}}, {{address.a_state}}, {{address.a_pincode}}</p>
+                        </mat-radio-button>
+                      </mat-radio-group>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="center space-between" fxLayoutGap="15px" style="line-height: 24px;">
+                      <p *ngIf="address.buytype == 'Personal' && address.buytype !=''">
+                        <a href="javascript:void(0)" fxLayout="row" fxLayoutAlign="start space-between" fxLayoutGap="10px" (click)="editpersonalshow(address.address_id)" class="edit-text">
+                          <mat-icon class="edit-icon">edit</mat-icon>
+                          Edit
+                        </a>
+                      </p>
+                      <p *ngIf="address.buytype == 'Business' && address.buytype !=''">
+                        <a href="javascript:void(0)" fxLayout="row" fxLayoutAlign="start space-between" fxLayoutGap="10px" (click)="editBusinessshow(address.address_id)" class="edit-text">
+                          <mat-icon class="edit-icon">edit</mat-icon>
+                          Edit
+                        </a>
+                      </p>
+                      <a href="javascript:void(0)" (click)="deleteaddress(address.address_id)" fxLayout="row" fxLayoutAlign="start space-between" fxLayoutGap="10px" class="c-remove-text">
+                        <mat-icon class=" delete-icon">delete</mat-icon>
+                        Delete
+                      </a>
+                    </div>
+                  </div>
+                  <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="40" fxFill="fill">
+                    <a href="javascript:void(0)" (click)="NewAddress()" class="color-orange fontsize-16 fontfamily-semibold text-underline">Add a new address</a>  
+                  </div>
+                </div>
+              </div>
+            </div>
+          <!-- show when buy type is selected section end here-->
+          <!-- add newaddress start-->
+            <div class="accor-inner-block" *ngIf="newaddress=='NewAddress' && selectedoption=='Personal' && ordersummaryOpt=='close' && deliveryadress !='close' ">
+              <div class="accor-header-block step-process-header-green">
+                <span class="accor-icons accor-green-icon2"></span>
+                <span class="lable-title">DELIVERY ADDRESS </span> 
+              </div>
+              <div class="accor-body-block">
+                <div fxLayout="column" fxFlex="100">
+                  <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-between start" fxFlex="100" fxLayoutGap="20px">
+                    <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+                      <mat-form-field class="example-full-width">
+                        <input matInput placeholder="First Name" [(ngModel)]="uname" name="uname" id="uname" required>
+                        <p class="error" *ngIf="name_err">{{name_err}}</p>
+                      </mat-form-field>
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+                      <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Mobile No." [(ngModel)]="mobile_no" name="mobile_no" id="mobile_no" minlength="10" maxlength="10" pattern="[0-9]+" required>
+                        <p class="error" *ngIf="mobile_no_err">{{mobile_no_err}}</p>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-between start" fxFlex="100" fxLayoutGap="20px">
+                    <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+                      <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Address(House No, Building, Street, Area)" [(ngModel)]="address_name" name="address_name" id="address_name" required>
+                        <p class="adr_err" *ngIf="address_name_err">{{address_name_err}}</p>
+                      </mat-form-field>
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+                      <mat-form-field class="example-full-width">
+                        <input matInput placeholder="City name" [(ngModel)]="city_name" name="city_name" id="city_name" required>
+                        <p class="adr_err" *ngIf="city_name_err">{{city_name_err}}</p>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-between start" fxFlex="100" fxLayoutGap="20px">
+                    <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+                      <mat-form-field class="example-full-width">
+                        <input matInput placeholder="State name" [(ngModel)]="state_name" name="state_name" id="state_name" required>
+                        <p class="adr_err" *ngIf="state_name_err">{{state_name_err}}</p>
+                      </mat-form-field>
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+                      <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Pincode" [(ngModel)]="pincode" name="pincode" id="pincode" minlength="6" maxlength="6" pattern="[0-9]+" required>
+                        <p class="adr_err" *ngIf="pincode_err">{{pincode_err}}</p>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-between start" fxFlex="100" fxLayoutGap="20px">
+                    <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+                      <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Landmark(optional)" [(ngModel)]="landmark" name="landmark" id="landmark">
+                      </mat-form-field>
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+                      <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Alternate Phone(optional)" minlength="10" maxlength="10" [(ngModel)]="alt_phone" name="alt_phone" id="alt_phone">
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" fxLayoutGap="20px">
+                    <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100">
+                      <p class="mb-10 mt-0 color-dgray fontsize-14">Tag this location</p>
+                      <div class="discount-type">
+                        <div class="radio mt-0 mb-0 relative">
+                          <label class="discount-type-inner mt-2">
+                          <input type="radio" *ngIf="addresstype=='home'" checked  [(ngModel)]="addresstype"  value="home">
+                          <input type="radio" *ngIf="addresstype!='home'" [(ngModel)]="addresstype"  value="home">
+                          <span class="cr">
+                          Home
+                          </span>
+                          </label>
+                          <label class="discount-type-inner mt-2">
+                          <input type="radio" [(ngModel)]="addresstype" *ngIf="addresstype=='work'" checked value="work">
+                          <input type="radio" [(ngModel)]="addresstype" *ngIf="addresstype!='work'" value="work">
+                          <span class="cr">
+                          Work
+                          </span>
+                          </label>
+                          <label class="discount-type-inner mt-2">
+                          <input type="radio" *ngIf="addresstype=='other'" checked [(ngModel)]="addresstype" value="other">
+                          <input type="radio" *ngIf="addresstype!='other'" [(ngModel)]="addresstype" value="other">
+                          <span class="cr">
+                          Other
+                          </span>
+                          </label>
+                          <p class="adr_err" *ngIf="addresstype_err">{{addresstype_err}}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div fxLayout="row wrap" fxLayoutAlign="space-between center" fxFlex="100" fxLayoutGap="20px">
+                    <div class="mt-20 mb-3" fxLayout="row" fxLayoutAlign="start center" fxFlex="100">
+                      <input type="hidden" [(ngModel)]="action">
+                      <button *ngIf="action!='edit'" (click)="saveaddresspersonal()" class="btn btn-green save-btn">Save</button>
+                      <button *ngIf="action=='edit'" (click)="editaddresspersonal(addresId)" class="btn btn-green save-btn">Save & Deliver Here</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="accor-inner-block" *ngIf="newaddress=='NewAddress' && selectedoption=='Business' && ordersummaryOpt=='close' && deliveryadress !='close'">
+              <div class="accor-header-block step-process-header-green">
+                <span class="accor-icons accor-green-icon2"></span>
+                <span class="lable-title">DELIVERY ADDRESS </span> 
+              </div>
+              <div class="accor-body-block" >
+                <div fxLayout="column" fxFlex="100">
+                  <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-between start" fxFlex="100" fxLayoutGap="20px">
+                    <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+                      <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Company Name" [(ngModel)]="uname" name="uname" id="uname" required>
+                        <p class="error" *ngIf="name_err">
+                          {{name_err}}
+                        </p>
+                      </mat-form-field>
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+                      <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Mobile No." [(ngModel)]="mobile_no" name="mobile_no" id="mobile_no" minlength="10" maxlength="13" pattern="[0-9]+" required>
+                        <p class="error" *ngIf="mobile_no_err">{{mobile_no_err}}</p>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-between start" fxFlex="100" fxLayoutGap="20px">
+                    <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+                      <mat-form-field class="example-full-width">
+                        <input matInput placeholder="GST Number" [(ngModel)]="gst" name="gst" id="gst" pattern="\d{2}[A-Z]{5}\d{4}[A-Z]{1}[A-Z\d]{1}[Z]{1}[A-Z\d]{1}" required>
+                        <p class="adr_err" *ngIf="gst_err">{{gst_err}}</p>
+                      </mat-form-field>
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+                      <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Email" [(ngModel)]="email_id" name="email_id" id="email_id" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                        <p class="adr_err" *ngIf="email_id_err">{{email_id_err}}</p>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-between start" fxFlex="100" fxLayoutGap="20px">
+                    <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+                      <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Address(House No, Building, Street, Area)" [(ngModel)]="address_name" name="address_name" id="address_name" required>
+                        <p class="adr_err" *ngIf="address_name_err">{{address_name_err}}</p>
+                      </mat-form-field>
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+                      <mat-form-field class="example-full-width">
+                        <input matInput placeholder="City name" [(ngModel)]="city_name" name="city_name" id="city_name" required>
+                        <p class="adr_err" *ngIf="city_name_err">{{city_name_err}}</p>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-between start" fxFlex="100" fxLayoutGap="20px">
+                    <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+                      <mat-form-field class="example-full-width">
+                        <input matInput placeholder="State name" [(ngModel)]="state_name" name="state_name" id="state_name" required>
+                        <p class="adr_err" *ngIf="state_name_err">{{state_name_err}}</p>
+                      </mat-form-field>
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+                      <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Pincode" [(ngModel)]="pincode" name="pincode" id="pincode" minlength="6" maxlength="6" pattern="[0-9]+" required>
+                        <p class="adr_err" *ngIf="pincode_err">{{pincode_err}}</p>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-between start" fxFlex="100" fxLayoutGap="20px">
+                    <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+                      <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Landmark(optional)" [(ngModel)]="landmark" name="landmark" id="landmark">
+                      </mat-form-field>
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+                      <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Alternate Phone(optional)" minlength="10" maxlength="10" [(ngModel)]="alt_phone" name="alt_phone" id="alt_phone">
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div fxLayout="row wrap" fxLayoutAlign="space-between center" fxFlex="100" fxLayoutGap="20px">
+                    <div class="mt-20 mb-3" fxLayout="row" fxLayoutAlign="start center" fxFlex="100">
+                      <input type="hidden" [(ngModel)]="action">
+                      <button *ngIf="action!='edit'" (click)="saveaddressBusiness()" class="btn btn-green save-btn">save</button>
+                      <button *ngIf="action=='edit'" (click)="editaddressBusiness(addresId)" class="btn btn-green save-btn">save address</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <!-- add newaddress end here-->
+            <div class="accor-inner-block" *ngIf="selected=='selected'">
+              <div class="accor-header-block step-process-header-transparent" fxLayoutAlign="space-between start">
+                <div>
+                  <span class="accor-icons accor-transparent-icon2"></span>
+                  <span class="lable-title">DELIVERY ADDRESS</span>
+                </div>
+                <div class="check-icon">
+                  <img src="../../../assets/images/accor-sucess-icon.png" class="">
+                </div>
+              </div>
+              <div class="accor-body-block pt-0 custom-flex" *ngFor="let address of addreslist;">
+                <p class="fontsize-16 color-dgray mb-1">
+                  <span class="address-title">{{address.a_name}}</span>
+                  <span class="address-text">+91 {{address.a_mobile}}, {{address.a_address}}, {{address.a_city}}, {{address.a_state}}, {{address.a_pincode}}
+                  </span>
+                </p>
+                <a href="javascript:void(0)" (click)="ChangeSelectedAddress()" class="change-btn">Change</a>
+              </div>
+            </div>
+          <!-- Order Summary close -->
+            <div class="accor-inner-block" *ngIf="ordersummaryOpt=='close'">
+              <div class="accor-header-block step-process-header-white">
+                <span class="accor-icons accor-white-icon3"></span>
+                <span class="lable-title">ORDER SUMMARY</span> 
+              </div>
+              <div class="accor-body-block">
+                <div fxLayout="row" fxLayoutAlign="space-between start" fxFlex="100" fxLayoutGap="20px">
+                  <p></p>
+                </div>
+              </div>
+            </div>
+          <!-- Order Summary open -->
+            <div class="accor-inner-block" *ngIf="ordersummaryOpt == 'open' && selectedoption !='' && selectedoption != 'null' ">
+              <div class="accor-header-block step-process-header-green">
+                <span class="accor-icons accor-green-icon3"></span>
+                <span class="lable-title">ORDER SUMMARY</span> 
+              </div>
+              <div class="accor-body-block pl-3">
+                <ul class="order-summery-list">
+                  <li class="white-inner-bottom-block" fxLayout="column" fxLayoutAlign="start start" *ngFor="let order of orderlist;">
+                    <div class="product-content" fxLayout="column" fxLayout.gt-xs="row wrap" fxFlex="100" style="width: 100%;max-width: 100%;">
+                      <div class="image-block" fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="14" fxFlex.gt-sm="18" fxFlex.gt-md="14">
+                        <a routerLink="/productcart/{{order.parent_category_name | removewhitespaces | lowercase }}/{{order.category_name | removewhitespaces | lowercase}}/{{order.product_id}}" class="">
+                          <div class="c-product-bg">
+                            <img width="100%" src="{{link}}{{order.product_id}}/{{order.image_name}}" class="c-product-img">
+                          </div>
+                        </a>
+                      </div>
+                      <div class="right-detail-block" fxLayout="row" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="85" fxFlex.gt-sm="80" fxFlex.gt-md="85">
+                        <div class="c-product-detail">
+                          <a href="" class="color-black fontsize-16 d-flex mb-10">{{order.product_name}}</a>
+                          <span class="new-price mr-10">₹ {{order.sub_total}}</span>
+                          <del class="fontsize-14 color-gray mr-10">₹ {{order.product_price}}</del>
+                          <span class="fontsize-12 color-red mr-10">You Save  {{order.percent}}</span>
+                          <br>
+                          <span class="fontsize-12" style="margin-right: 10px;">Quantity : {{order.quantity}}</span>
+                          <span class="fontsize-12" *ngIf="order.size != null && order.size != '' ">Size : {{order.size}}</span> 
+                          <span class="fontsize-12" *ngIf="order.color != null && order.color != '' ">Color : {{order.color}}</span>
+                        </div>
+
+                        <div class="update-item-block">
+                          <div fxLayout="row wrap" fxLayoutAlign="end">
+                            <div class="pm-counting-block" *ngIf="session.user_type !='company'">
+                              <img (click)="minus(order.id,order.cart_id,order.product_id,order.quantity,order.moq)" src="../../../assets/images/c-minus.png" class="c-counting-minus">
+                              <input style="width:40%" type="text" class="c-counting-num" [(ngModel)]="order.quantity">
+                              <img (click)="plus(order.id,order.cart_id,order.product_id,order.quantity)" src="../../../assets/images/c-plus.png" class="c-counting-plus">
+                            </div>
+                            <p class="error" *ngIf="errId==order.id && qtyerr!=''">{{qtyerr}}</p>
+                            <!-- <div title="Delete Product" (click)="removeItemConfirmationPopup(order.id,order.cart_id,order.product_id)" class=" d-flex c-remove-text"><mat-icon class="delete-icon">delete</mat-icon> Remove</div> -->
+                          </div>
+                          <div class="error" *ngIf="moq_err">
+                            {{moq_err}}{{order.moq}}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="bottom-ft2 sticky-block">
+                <button (click)="ordercontinue()" class="btn btn-green custom-btn">continue</button>
+              </div>
+            </div>
+          <!-- Order Summary Count -->
+            <div class="accor-inner-block" *ngIf="ordersummaryOpt=='count'">
+              <div class="accor-header-block step-process-header-transparent" fxLayoutAlign="space-between start">
+                <div>
+                  <span class="accor-icons accor-transparent-icon3"></span>
+                  <span class="lable-title">ORDER SUMMARY</span>  
+                </div>
+                <div class="check-icon">
+                  <img src="../../../assets/images/accor-sucess-icon.png">
+                </div>
+              </div>
+              <div class="accor-body-block pt-0 custom-flex">
+                <p class="fontsize-16 color-dgray mb-0">
+                  <span class="address-text">{{this.cartcount}} Items</span>
+                </p>
+                <button (click)="OpenOrderSummary()" class="change-btn">Change</button>
+              </div>
+            </div>
+          <!-- Payment Close -->
+            <div class="accor-inner-block" *ngIf="payopt=='close'">
+              <div class="accor-header-block step-process-header-white">
+                <span class="accor-icons accor-white-icon4"></span>
+                <span class="lable-title">PAYMENT OPTIONS</span> 
+              </div>
+              <div class="accor-body-block">
+                <div fxLayout="row" fxLayoutAlign="space-between start" fxFlex="100" fxLayoutGap="20px">
+                  <p></p>
+                </div>
+              </div>
+            </div>
+          <!-- Payment Open -->
+            <div class="accor-inner-block" *ngIf="payopt=='open'">
+              <div class="accor-header-block step-process-header-green">
+                <span class="accor-icons accor-green-icon4"></span>
+                <span class="lable-title">PAYMENT OPTIONS</span> 
+              </div>
+              <div class="accor-body-block">
+                <div fxLayout="column" >
+                  <div class="mb-15" fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" fxLayoutGap="20px">
+                    <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100">
+                      <p class="mb-10 mt-0 color-dgray fontsize-14">Choose payment option</p>
+                      <div class="discount-type">
+                        <div class="radio mt-0 mb-0">
+                          <!-- <label class="discount-type-inner mt-2" *ngIf='usertype == "customer"'>
+                            <input (click)="paydirect()" type="radio" name="remember" value="cod" [(ngModel)]="paymentoption">
+                              <span class="cr" style="width: 150px;">
+                                Cash On Delivery
+                              </span>
+                          </label> -->
+                          <label class="discount-type-inner mt-2">
+                            <input type="radio" name="remember" (click)="payonline()" value="online" [(ngModel)]="paymentoption">
+                              <span class="cr" style="width: 150px;margin-right: 0px;">
+                                Online
+                              </span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Payment Online -->
+                  <!-- <form action="myServlet"  name="payuform" method=POST >
+                    <input type="hidden" name="key"value="UFu3ed" />
+                    <input type="hidden" name="hash_string" value="" />
+                    <input type="hidden" name="hash" />
+                    <input type="hidden" name="txnid"/>
+                    <table>
+                    <tr>
+                    <td><b>Mandatory Parameters</b></td>
+                    </tr>
+                    <tr>
+                    <td>Amount: </td>
+                    <td><input name="amount"  /></td>
+                    <td>First Name: </td>
+                    <td><input name="firstname" id="firstname"  /></td>
+                    </tr>
+                    <tr>
+                    <td>Email: </td>
+                    <td><input name="email" id="email"   /></td>
+                    <td>Phone: </td>
+                    <td><input name="phone"  /></td>
+                    </tr>
+                    <tr>
+                    <td>Product Info: </td>
+                    <td colspan="3"><textarea name="productinfo" >  </textarea></td>
+                    </tr>
+                    <tr>
+                    <td>Success URI: </td>
+                    <td colspan="3"><input name="surl"  size="64"  /></td>
+                    </tr>
+                    <tr>
+                    <td>Failure URI: </td>
+                    <td colspan="3"><input name="furl"  size="64" /></td>
+                    </tr>
+                    <tr>
+                    <td colspan="3"><input type="hidden" name="service_provider" value="payu_paisa" /></td>
+                    </tr>
+                    <tr>
+                    <td colspan="4"><input type="submit" value="Submit"  /></td>
+                    </tr>
+                    </table>
+                    </form>
+                  -->
+                  <div class="checkpayment" *ngIf="payoption=='online'">
+                    <form ngNoForm action="https://secure.payu.in/_payment" name="payuform" method="POST" target="_blank">
+                      <input type="hidden" name="key" ng-model="key" [(ngModel)]="payuform.key">
+                      <input type="hidden" name="salt" ng-model="salt" [(ngModel)]="payuform.salt">
+                      <input type="hidden" name="hash" ng-model="hash" [(ngModel)]="payuform.hash">
+                      <input type="hidden" name="txnid" ng-model="txnid" [(ngModel)]="payuform.txnid">
+                      <input type="hidden" name="productinfo" id="productInfo" [(ngModel)]="payuform.productinfo">
+                      <input type="hidden" name="firstname" id="firstname" [(ngModel)]="payuform.firstname">
+                      <input type="hidden" name="email" id="email" [(ngModel)]="payuform.email">
+                      <input type="hidden" name="phone" id="phone" [(ngModel)]="payuform.phone">
+                      <input type="hidden" name="amount" id="amount" [(ngModel)]="payuform.amount">
+                      <input type="hidden" name="surl" ng-model="surl" [(ngModel)]="payuform.surl">
+                      <input type="hidden" name="furl" ng-model="furl" [(ngModel)]="payuform.furl">
+                      <input type="hidden" name="udf5" ng-model="udf5" [(ngModel)]="payuform.udf5">
+                      <input type="hidden" name="udf4" id="udf4" ng-model="udf4" [(ngModel)]="payuform.udf4">
+                      <input type="hidden" name="udf3" id="udf3" ng-model="udf3" [(ngModel)]="payuform.udf3">
+                      <input type="hidden" name="service_provider" value="payu_paisa" size="64" />
+                      <div class="mb-3" fxLayout="row" fxLayoutAlign.gt-xs="end center" fxLayoutAlign="center center" fxFlex="100">
+                        <button class="btn btn-danger custom-btn" style="width: 160px;">Submit</button>
+                      </div>
+                    </form>
+                  </div>
+                  <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutAlign.gt-xs="end end" fxFlex="100" fxLayoutGap="20px" *ngIf="payoption != 'online'">
+                    <p class="error" *ngIf="payoption != 'online'">{{paymentoption_err}}</p>
+                    <div class="mb-3" fxLayout="row" fxLayoutAlign.gt-xs="end center" fxLayoutAlign="center center" fxFlex="100">
+                      <button (click)="paynow(cart_id)" class="btn btn-green custom-btn" style="width: 160px;">pay now</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="right-white-nshadow-box" fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="100" fxFlex.gt-sm="32.3" style="width:100%;">
+        <span><img src="../../../assets/images/surface1.png" class="mr-15"> Safe and Secure Payments. Easy to use. <br/> 100% Authentic Products.</span>
+      </div>
+      <div class="right-white-box sidebar-sticky" fxFlex.gt-sm="32.3" style="width:100%;">
+        <div class="inner-block" style="width:100%;">
+          <h5 class="color-dgray fontsize-16 fontfamily-bold mt-0 mb-0 py-3 px-3">Price Details</h5>
+          <div *ngIf="subtotal !='' && totaltax != '' && totalprice !='';else addresserror;">
+            <ul class="cart-item-total">
+              <li class="border-t">
+                <div class="left-lable-block">Sub Total</div>
+                <div class="right-price-block">₹ {{subtotal}}</div>
+              </li>
+              <li class="">
+                <div class="left-lable-block">Tax</div>
+                <div class="right-price-block">₹ {{totaltax}}</div>
+              </li>
+              <!-- <li class="">
+                <div class="left-lable-block">Shipping</div>
+                <div class="right-price-block">₹ {{shippingPrice}}</div>
+                </li> -->
+              <li class="" *ngIf="shipdata !='' && shipdata !='0'">
+                <div class="left-lable-block">Shipping</div>
+                <div class="right-price-block">₹ {{shipdata}}</div>
+              </li>
+              <li *ngIf="coupondiscount!=''" class="">
+                <div class="left-lable-block">Coupon Discount</div>
+                <div class="right-price-block">-₹ {{coupondiscount}}</div>
+              </li>
+              <li class="c-border-divider mt-0 mb-2"></li>
+              <li class="mb-3">
+                <div class="left-lable-block finsize">Total</div>
+                <div class="right-price-block finsize">₹ {{totalprice}}</div>
+              </li>
+            </ul>
+          </div>
+          <ng-template #addresserror>
+            <div class="pl-3 pr-3 pt-10 pb-10 border-t" style="width: 100%;">
+              <span class="">Please Update Your Address first</span>
+            </div>
+          </ng-template>
+          <!-- <div class="pl-3 pr-3 pt-10 pb-10 border-t" style="width: 100%;">
+            <span class="color-lgray">Delivery within 4-7 working days</span>
+            </div> -->
+          <!-- <div *ngIf="couponid==''" class="pl-3 pr-3 pt-10 pb-20" style="width: 100%;">
+            <span (click)="openNav();" class="pl-10 pr-10 pt-20 pb-20 d-flex color-orange" fxLayoutAlign="space-between center" style="border: 1px dashed #FF8913;width: 100%;background: #F9EFE5;">Apply Promocode / Offers <img src="../../../assets/images/right-orange-arrow.png" alt=""></span>
+            </div> -->
+          <div *ngIf="couponid!=''" class="pl-3 pr-3 pt-10 pb-20" fxLayout="row" fxLayoutAlign="space-between center" fxFlex="100" style="width: 100%;">
+            <span class="pl-10 pr-10 pt-20 pb-20 d-flex color-gray" fxLayoutAlign="space-between center" style="border: 1px dashed #767676;width: 100%;background: #F6F6F6;">{{couponcode}} <br/> Offer applied on the bill<span class="color-orange cursor" (click)="coupanAppliedPopup(couponcode,totalprice,'delete')">Remove</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" (click)="closeNav();"><img src="../../../assets/images/side-pannel-close.png" class=""> </a>
+  <div>
+    <h5 class="fontsize-14 color-dgray mt-30 mb-20">Promo Code</h5>
+    <div class="border-b mb-15" fxLayout="row" fxLayoutAlign="space-between start">
+      <mat-form-field appearance="outline" style="width: 225px;">
+        <mat-label>Enter Promocode</mat-label>
+        <input matInput placeholder="Placeholder">
+      </mat-form-field>
+      <button class="btn btn-orange ml-15" style="width: 88px;height: 59px;margin-top: .25em;">Apply</button>
+    </div>
+    <h5 class="fontsize-14 color-dgray mt-10 mb-20">Other Offers</h5>
+    <div class="mb-15 coupon-main-box" fxLayout="column" fxLayoutAlign="start start" *ngFor="let coupon of coupons">
+      <h5 class="fontsize-14 color-dgray mt-0 mb-10">{{coupon.coupon_title}}</h5>
+      <div class="" fxLayout="row" fxLayoutAlign="space-between center" fxFill="fill">
+        <span class="fontsize-14 color-dgray mt-0 mb-0 coupon-code-span">{{coupon.coupon_code}}</span>
+        <span *ngIf="coupon.apply=='false'" class="fontsize-14 color-orange fontfamily-bold text-uppercase" (click)="coupanAppliedPopup(coupon.coupon_code,totalprice,'add')">Apply</span>
+        <span *ngIf="coupon.apply=='true'" class="fontsize-14 color-orange fontfamily-bold text-uppercase" >Applied</span>
+      </div>
+      <p class="error" *ngIf="errId==coupon.id && coupommessage!=''">{{coupommessage}}</p>
+    </div>
+  </div>
+</div>

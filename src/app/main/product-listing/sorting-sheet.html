@@ -1,0 +1,33 @@
+<h5>Sort By</h5>
+<mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header class="panel-head p-0" [collapsedHeight]="'34px'" [expandedHeight]="'34px'">
+        <mat-panel-title>
+          Price
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div class="sort-box">
+        <div href="JavaScript:Void(0);" (click)="sorting('price','low')" class="relative fontfamily-bold" [ngClass]="{'active': SPL==1}"><span class="sm-none">Price -- </span>Low to High</div>
+        <div href="JavaScript:Void(0);" (click)="sorting('price','high')" class="relative fontfamily-bold active" [ngClass]="{'active': SPH==1}"><span class="sm-none">Price -- </span>High to Low</div>
+      </div>
+
+    </mat-expansion-panel>
+
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header class="panel-head p-0" [collapsedHeight]="'34px'" [expandedHeight]="'34px'">
+        <mat-panel-title>
+          Discount
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      
+      <div class="sort-box">
+        <a href="JavaScript:Void(0);" (click)="sorting('discount','low')" class="relative fontfamily-bold" [ngClass]="{'active': SDL==1}"><span class="sm-none">Discount -- </span>Low to High</a>
+        <a href="JavaScript:Void(0);" (click)="sorting('discount','high')" class="relative fontfamily-bold" [ngClass]="{'active': SDH==1}"><span class="sm-none">Discount -- </span>High to Low</a>
+      </div>
+
+    </mat-expansion-panel>
+    <div class="relative button-block">
+      <button class="btn btn-green btn-shadow custom-btn" (click)="openLink($event)" (click)="searchrecord('yes')" mat-button>Apply</button>
+    </div>
+  </mat-accordion>

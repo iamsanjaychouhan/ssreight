@@ -1,0 +1,35 @@
+<div class="relative">
+    <a class="crose-icon" mat-dialog-close>
+        <img src="../../../assets/images/cencel-icon.svg" alt="" />
+    </a>
+    <mat-dialog-content class="modal-sm">
+        <div class="align-center mb-4 pl-4 pr-4">
+            <h2 mat-dialog-title class="fontsize-24 color-black fontfamily-bold mb-2" >User Type</h2>
+            <span class="fontsize-12 fontfamily-regular">Select of your user type</span>
+        </div>
+
+        <form class="example-form pb-4">
+                <div class="user-type mb-4">
+                    <div class="radio mt-0 mb-0">
+                        <label class="user-type-inner">
+                            <input checked type="radio" name="remember" value="user" (click)="choosetype('user')">
+                            <span class="cr" style="background-image:url(../../../assets/images/user-type-resister.png);">
+                            <p class="select-text">User</p>    
+                            <img src="../../../assets/images/right-icon.svg" class="right-icon" alt="">
+                            </span>
+                        </label>
+                        <label class="user-type-inner">
+                            <input type="radio" name="remember" value="company" (click)="choosetype('company')">
+                            <span class="cr" style="background-image:url(../../../assets/images/company-type-resister.png);">
+                            <p class="select-text">Dealer</p>    
+                            <img src="../../../assets/images/right-icon.svg" class="right-icon" alt="">
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+            <button *ngIf="usertype=='user'" class="btn btn-green btn-shadow" mat-button mat-dialog-close (click)="RegisterPopup()">NEXT</button>
+            <button *ngIf="usertype=='company'" class="btn btn-green btn-shadow" mat-button mat-dialog-close (click)="CompaniPopup()">NEXT</button> 
+        </form>
+    </mat-dialog-content>
+</div>

@@ -1,0 +1,315 @@
+<header class="bg-white large-header" *ngIf="headershow"> 
+    <div class="top-header">
+        <div class="container">
+            <div class="" fxLayout.gt-sm="row" fxLayout.gt-md="row" fxLayoutAlign="space-between center">
+                <div class="" fxLayout="row" style="height:30px;">
+                    <a href="tel:{{this.customernumber}}" class="color-white fontsize-14 display-ib a_hover_white vertical-bottom"><mat-icon>call</mat-icon><span class="vertical-middle">+91 {{this.customernumber}}</span></a>
+                    <a href="mailto:care@safetywagon.com" class="color-white fontsize-14 display-ib a_hover_white ml-3 vertical-bottom"><mat-icon>email</mat-icon><span class="vertical-middle">care@safetywagon.com</span></a>
+                </div>
+                <div class="top-header-right" fxLayout="row" fxLayoutGap="20" style="height:30px;">
+                    <a href="JavaScript:void(0);" class="color-white fontsize-12 a_hover_white" (click)="Projectenquirydialog();"><span>Project & Enquiry</span></a>
+                    <a href="JavaScript:void(0);" class="color-white fontsize-12 a_hover_white" (click)="Bulkenquirydialog();"><span>Bulk Buy</span></a>
+                    <a href="JavaScript:void(0);" class="color-white fontsize-12 a_hover_white" (click)="SellonSefetywagonDialog();"><span>Sell on Safety Wagon</span> </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main-header sticky-nav-wrapper">
+        <div class="cont ainer">
+            <nav class="navbar navbar-expand-md sticky-nav" ngStickyNav stickyClass="sticky-box-shadow" ngStickyNav>
+                <div class="h-100 container" fxLayout.gt-sm="row" fxLayout.gt-md="row" fxLayoutAlign="space-between center">
+                    <div class="">
+                        <a class="navbar-brand" href="/">
+                            <img class="sticky-img" src="../../../assets/images/safety-logo.png" />
+                            <img class="default-img" src="../../../assets/images/static-logo.png"/>
+                        </a>
+                    </div>
+                    <div class="" fxLayout="row" fxLayoutAlign="space-around center">
+                        <form (submit)="search_key()">
+                            <div class="input-group header-search-box">
+                                <input type="text" class="form-control" placeholder="Search Products" [(ngModel)]="searchkeyword" name="search" id="search" #search required>
+                                <a type="submit" (click)="search_key()" class="input-group-append">
+                                    <span class="" id="">
+                                        <mat-icon class="fontsize-20">search</mat-icon>
+                                    </span>
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="right-block">
+                        <div class="sing-in-box">
+                            <a class="icon-block" *ngIf="session==''">
+                                <i class="material-icons user-profile-pic">person</i>
+                                <span class="cat-text display-ib vertical-middle">Sign In</span>
+                            </a>
+                            <div class="sing-in-box-inner" *ngIf="session==''">
+                                <span class="fontsize-12 color-gray fontfamily-regular m-2 display-b">If you are a new user</span>
+                                <a class="fontsize-12 fontfamily-regular color-white a_hover_white display-b mt-1 mb-3" (click)="userPopup()">REGISTER</a>
+                                <button class="btn btn-green btn-small" (click)="loginPopup()">LOGIN</button>
+                            </div> 
+                            <a href="#" class="" *ngIf="session.user_id>0">
+                                <div class="user-profile-block">
+                                    <div><i class="material-icons user-profile-pic">person</i></div>
+                                    <div class="user-profile-name">{{session.name}}</div>
+                                </div>
+                            </a>
+                            <div class="sing-in-box-inner " *ngIf="session.user_id>0 && session.user_type=='customer' || session.user_type=='company'">
+                                <a routerLink="/my-profile" class="a_hover_white color-white fontsize-14 fontfamily-regular display-b text-left pt-2 pb-2">
+                                    <img src="../../../assets/images/my-account-icon.svg" class="mr-2" alt="">
+                                    <span>My Profile</span>
+                                </a>
+                                <a routerLink="/my-order" class="a_hover_white color-white fontsize-14 fontfamily-regular display-b text-left pt-2 pb-2">
+                                    <img src="../../../assets/images/my-order-icon.svg" class="mr-2" alt="">
+                                    <span>My Orders</span>
+                                </a>
+                                <a routerLink="/change-password" class="a_hover_white color-white fontsize-14 fontfamily-regular display-b text-left pt-2 pb-2">
+                                    <img src="../../../assets/images/my-order-icon.svg" class="mr-2" alt="">
+                                    <span>Change password</span>
+                                </a>
+                                <a routerLink="/addresses" class="a_hover_white color-white fontsize-14 fontfamily-regular display-b text-left pt-2 pb-2">
+                                    <img src="../../../assets/images/my-order-icon.svg" class="mr-2" alt="">
+                                    <span>Manage Addresses</span>
+                                </a>
+                                
+                                <a *ngIf="sitetype==true" routerLink="/amc-membership" class="a_hover_white color-white fontsize-14 fontfamily-regular display-b text-left pt-2 pb-2">
+                                    <img src="../../../assets/images/my-bookied-icon.svg" class="mr-2" alt="">
+                                    <span>Membership/AMC List</span>
+                                </a>
+                                <div class="pt-3" style="border-top: 1px solid rgba(90,91,94,.22);">
+                                    <a href="javascript:void(0)" (click)="logout()" class="btn btn-green btn-small">LOGOUT</a>
+                                </div>
+                            </div> 
+                            <div class="sing-in-box-inner" *ngIf="session.user_id>0 && session.user_type=='company'">
+                                <a routerLink="/my-profile" class="a_hover_white color-white fontsize-14 fontfamily-regular display-b text-left pt-2 pb-2">
+                                    <img src="../../../assets/images/my-account-icon.svg" class="mr-2" alt="">
+                                    <span>My Profile</span>
+                                </a>
+                                <a routerLink="/my-order" class="a_hover_white color-white fontsize-14 fontfamily-regular display-b text-left pt-2 pb-2">
+                                    <img src="../../../assets/images/my-order-icon.svg" class="mr-2" alt="">
+                                    <span>My Orders</span>
+                                </a>
+                                <a routerLink="/change-password" class="a_hover_white color-white fontsize-14 fontfamily-regular display-b text-left pt-2 pb-2">
+                                    <img src="../../../assets/images/my-order-icon.svg" class="mr-2" alt="">
+                                    <span>Change password</span>
+                                </a>
+                                <a routerLink="/addresses" class="a_hover_white color-white fontsize-14 fontfamily-regular display-b text-left pt-2 pb-2">
+                                    <img src="../../../assets/images/my-order-icon.svg" class="mr-2" alt="">
+                                    <span>Manage Addresses</span>
+                                </a>
+                                <a *ngIf="sitetype==true" routerLink="/amc-membership" class="a_hover_white color-white fontsize-14 fontfamily-regular display-b text-left pt-2 pb-2">
+                                    <img src="../../../assets/images/my-bookied-icon.svg" class="mr-2" alt="">
+                                    <span>Membership/AMC List</span>
+                                </a>
+                                <div class="pt-3" style="border-top: 1px solid rgba(90,91,94,.22);">
+                                    <a href="javascript:void(0)" (click)="logout()" class="btn btn-green btn-small">LOGOUT</a>
+                                </div>
+                            </div>
+                        </div>                
+                        <div class="cart-box" *ngIf="sitetype==false">
+                            <a routerLink="cart" class="icon-block">
+                                <div class="cart-block">
+                                    <img  class="ml-2 cart-icon sticky-img" src="../../../assets/images/cart.png" />
+                                    <img  class="ml-2 cart-icon default-img" src="../../../assets/images/white_cart.png" />
+                                    <span class="count-shoping-num">{{cartcount}}</span>
+                                </div>
+                                <span class="cat-text display-ib vertical-middle">Cart</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>     
+            </nav>           
+        </div>
+    </div>
+    <div class="bottom-navbar">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="nav-wrapper">
+                        <div class="shop-bydroup main-navigation"> 
+                            <div class="inner-nav" *ngFor="let catresult of catresults; let i = index">
+                                <div class="relative">
+                                    <span class="toggle-shop collapsed" data-toggle="collapse" [attr.data-target]="'#collapseOne' + i">
+                                        <a routerLink="sub-categories">{{catresult.category_name}}</a>
+                                    </span>
+                                </div>
+                                <div id="collap seOne{{i}}" class="coll apse category-list">
+                                    <ul class="dot-ul-round pl-4">
+                                        <li *ngFor="let subcat of catresult.sub_category"><a href="product/{{subcat.parent_category_name | lowercase | removewhitespaces }}/{{subcat.category_name | removewhitespaces | lowercase }}/{{subcat.category_id}}">{{subcat.category_name}}</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<header class="small-header sticky-nav-wrapper">
+    <div class="small-header-sticky-block">
+        <div class="small-header-inner-block sticky-nav" ngStickyNav stickyClass="sticky-box-shadow" ngStickyNav>
+            <div class="container" fxLayout="row" fxLayout.gt-xs="row" fxLayoutAlign="space-between center">
+                <div class="" fxLayout="r ow">
+                    <span fxLayout="column" fxLayoutAlign="center center" class="color-black a_hover_black mr-2" (click)="opan_header_menu();">
+                        <img src="../../../assets/images/three-line-bar.svg" />
+                    </span>
+                    <a fxLayout="column" class="navbar-brand" href="/">
+                        <img class="sticky-img mobile-logo" src="../../../assets/images/safety-logo.png" />
+                        <img class="default-img mobile-logo" src="../../../assets/images/static-logo.png"/>
+                    </a>
+                </div>
+                <div class="tablet-show" fxLayout="colu mn">
+                    <div class="input-group header-search-box">
+                        <input type="text" class="form-control" placeholder="Search Products & Brands" aria-label=""
+                            aria-describedby="">
+                        <a href="#" class="input-group-append">
+                            <span class="" id=""><mat-icon class="fontsize-20">search</mat-icon> Search</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="" fxLayout="ro w">
+                    <a routerLink="/cart" class="icon-block">
+                        <div class="cart-block">
+                            <img  class="ml-2 sticky-img" src="../../../assets/images/cart.png" />
+                            <img  class="ml-2 default-img" src="../../../assets/images/white_cart.png" />
+                            <span class="count-shoping-num">{{cartcount}}</span>
+                        </div>
+                    </a>
+                    <div class="sing-in-box">
+                        <a href="#" class="" *ngIf="session==''">
+                            <span class="fontsize-14 color-black fontfamily-bold">Sign In</span>
+                        </a>
+                        <div class="sing-in-box-inner" *ngIf="session==''">
+                            <span class="fontsize-12 color-gray fontfamily-regular m-2 display-b">If you are a new user</span>
+                            <a class="fontsize-12 fontfamily-regular color-white a_hover_white display-b mt-1 mb-3" (click)="userPopup()">REGISTER</a>
+                            <button class="btn btn-green btn-small" (click)="loginPopup()">LOGIN</button>
+                        </div> 
+        
+                        <a href="#" class="" *ngIf="session.user_id>0">
+                            <span class="fontsize-14 color-black fontfamily-bold"><span class="user-name1">{{session.name}}</span><img src="../../../assets/images/user-img110.png" alt="" class="ml-2 round-icon-30"></span>
+                        </a>
+                        <div class="sing-in-box-inner " *ngIf="session.user_id>0">
+                            <a routerLink="/my-profile" class="a_hover_white color-white fontsize-14 fontfamily-regular display-b text-left pt-2 pb-2">
+                                <img src="../../../assets/images/my-account-icon.svg" class="mr-2" alt="">
+                                <span>My Profile</span>
+                            </a>
+                            <a routerLink="/my-order" class="a_hover_white color-white fontsize-14 fontfamily-regular display-b text-left pt-2 pb-2">
+                                <img src="../../../assets/images/my-order-icon.svg" class="mr-2" alt="">
+                                <span>My Orders</span>
+                            </a>
+                            <a routerLink="/change-password" class="a_hover_white color-white fontsize-14 fontfamily-regular display-b text-left pt-2 pb-2">
+                                <img src="../../../assets/images/my-order-icon.svg" class="mr-2" alt="">
+                                <span>Change password</span>
+                            </a>
+                            <a routerLink="/addresses" class="a_hover_white color-white fontsize-14 fontfamily-regular display-b text-left pt-2 pb-2">
+                                <img src="../../../assets/images/my-order-icon.svg" class="mr-2" alt="">
+                                <span>Manage Addresses</span>
+                            </a>
+                            <div class="pt-3" style="border-top: 1px solid rgba(90,91,94,.22);">
+                                <a href="javascript:void(0)" (click)="logout()" class="btn btn-green btn-small">LOGOUT</a>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mobile-show container" fxLayout="column">
+            <form (submit)="search_key()">
+                <div class="input-group header-search-box">
+                    <input type="text" class="form-control" placeholder="Search Products" [(ngModel)]="searchkeyword" name="search" id="searchitem" #search required>
+                    <a type="submit" (click)="search_key()" class="input-group-append">
+                        <span class="" id="">
+                            <mat-icon class="fontsize-20">search</mat-icon>
+                        </span>
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</header>
+<div id="header-sidebar" class="header-sidebar">
+    <a href="javascript:void(0)" class="closebtn" (click)="close_header_menu();">
+        <img src="../../../assets/images/side-pannel-close.png" class=""> 
+    </a>
+    <div class="mobile-header-option">
+        <div class="" fxLayout="column">
+            <a fxLayout="row" fxLayoutAlign="start center" href="JavaScript:Void(0);" (click)="loginPopup()" class="color-green fontsize-14 fontfamily-bold border-b h-48" *ngIf="session==''">
+                <img src="../../../assets/images/user-small-icon.svg" class="mr-3"> Login & Sign Up
+            </a>
+            <mat-accordion *ngIf="session.user_id>0" class="login-block">
+                <mat-expansion-panel class="color-dgray fontsize-14 fontfamily-medium border-b" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header [collapsedHeight]="'36px'" [expandedHeight]="'36px'">
+                        <mat-panel-title>
+                            <div class="user-profile-block" *ngIf="session.user_id>0">
+                                <div><i class="material-icons user-profile-pic color-green">person</i></div>
+                                <div class="user-profile-name color-green">{{session.name}}</div>
+                            </div>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    
+                    <div class="list-item">
+                        <a routerLink="/my-profile" class="profile-menu" (click)="close_header_menu();">
+                            <img src="../../../assets/images/icons8-user.png" class="custom-icon mr-3" alt="">
+                            <span>My Profile</span>
+                        </a>
+                        <a routerLink="/my-order" class="profile-menu" (click)="close_header_menu();">
+                            <img src="../../../assets/images/icons8-create-order.png" class="custom-icon mr-3" alt="">
+                            <span>My Orders</span>
+                        </a>
+                        <a routerLink="/change-password" class="profile-menu" (click)="close_header_menu();">
+                            <img src="../../../assets/images/icons8-password.png" class="custom-icon mr-3" alt="">
+                            <span>Change password</span>
+                        </a>
+                        <a routerLink="/addresses" class="profile-menu" (click)="close_header_menu();">
+                            <img src="../../../assets/images/icons8-address.png" class="custom-icon mr-3" alt="">
+                            <span>Manage Addresses</span>
+                        </a>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+
+            <mat-accordion class="category-box">
+                <mat-expansion-panel class="color-dgray fontsize-14 fontfamily-medium border-b" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header [collapsedHeight]="'36px'" [expandedHeight]="'36px'">
+                        <mat-panel-title>
+                            <img src="../../../assets/images/shop-small-icon.svg" class="mr-3"> Shop by Category
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    
+                    <mat-expansion-panel (opened)="panelOpenState = true"  (closed)="panelOpenState = false" class="border-b" *ngFor="let catresult of catresults; let i = index" >
+
+                        <mat-expansion-panel-header *ngIf="catresult.category_name !='' || catresult.category_name !='null'" [collapsedHeight]="'36px'" [expandedHeight]="'36px'">
+                            <mat-panel-title class="color-dgray fontsize-14 fontfamily-medium" >
+                                {{catresult.category_name}}
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        
+                        <div class="header-safty-content" *ngIf="catresult.category_name !='' || catresult.category_name !='null'">
+                            <a *ngFor="let subcat of catresult.sub_category" href="product/{{subcat.category_id}}" (click)="close_header_menu();" class="fontsize-14 color-gray relative">{{subcat.category_name}}</a>
+                        </div>
+                    </mat-expansion-panel>
+                </mat-expansion-panel>
+            </mat-accordion>
+            <a fxLayout="row" fxLayoutAlign="start center" href="JavaScript:Void(0);" class="color-dgray fontsize-14 fontfamily-medium h-48" (click)="close_header_menu();" (click)="Projectenquirydialog();"><img src="../../../assets/images/project-small-icon.svg" class="mr-3"> Project & Enquiry</a>
+
+            <a fxLayout="row" fxLayoutAlign="start center" href="JavaScript:Void(0);" class="color-dgray fontsize-14 fontfamily-medium h-48" (click)="close_header_menu();" (click)="Bulkenquirydialog();"><img src="../../../assets/images/bulk-small-icon.svg" class="mr-3"> Bulk Enquiry</a>
+            <a fxLayout="row" fxLayoutAlign="start center" href="JavaScript:Void(0);" class="color-dgray fontsize-14 fontfamily-medium h-48" (click)="close_header_menu();" (click)="SellonSefetywagonDialog();"><img src="../../../assets/images/sell-small-icon.svg" class="mr-3"> Sell on Safety Wagon</a>
+            <a fxLayout="row" fxLayoutAlign="start center" target="_blank" href="tel:{{this.customernumber}}" class="color-dgray fontsize-14 fontfamily-medium h-48"><img src="../../../assets/images/call-small-icon.svg" class="mr-3"> +91 {{this.customernumber}}</a>
+            <a fxLayout="row" fxLayoutAlign="start center" target="_blank" href="mailto:care@safetywagon.com" class="color-dgray fontsize-14 fontfamily-medium h-48 border-b"><img src="../../../assets/images/email-small-icon2.svg" class="mr-3"> care@safetywagon.com</a>
+
+            <a fxLayout="row" fxLayoutAlign="start center" (click)="close_header_menu();" routerLink="about-us" class="color-dgray fontsize-14 fontfamily-medium h-48"><mat-icon style="font-size: 18px;color: #767676; margin-right: 16px; line-height: 22px;">check_box</mat-icon> About Us</a>
+
+            <a fxLayout="row" fxLayoutAlign="start center" (click)="close_header_menu();" routerLink="shipping-policy" class="color-dgray fontsize-14 fontfamily-medium h-48"><mat-icon style="font-size:18px; color: #767676; margin-right: 16px; line-height: 22px;">check_box</mat-icon> Shipping Policy</a>
+
+            <a fxLayout="row" fxLayoutAlign="start center" (click)="close_header_menu();" routerLink="return-exchange" class="color-dgray fontsize-14 fontfamily-medium h-48"><mat-icon style="font-size:18px; color: #767676; margin-right: 16px; line-height: 22px;">check_box</mat-icon> Return And Exchange</a>
+
+            <a fxLayout="row" fxLayoutAlign="start center" (click)="close_header_menu();" routerLink="terms-conditions" class="color-dgray fontsize-14 fontfamily-medium h-48"><mat-icon style="font-size:18px; color: #767676; margin-right: 16px; line-height: 22px;">check_box</mat-icon> Terms And Conditions</a>
+
+            <a fxLayout="row" fxLayoutAlign="start center" (click)="close_header_menu();" routerLink="privacy-policy" class="color-dgray fontsize-14 fontfamily-medium h-48"><mat-icon style="font-size:18px; color: #767676; margin-right: 16px; line-height: 22px;">check_box</mat-icon> Privacy Policy</a>
+            
+            <a href="javascript:void(0)" *ngIf="session.user_id>0" (click)="logout()" class="color-dgray fontsize-14 fontfamily-medium h-48 border-b" fxLayout="row" fxLayoutAlign="start center" ><img src="../../../assets/images/logout-rounded.png" class="custom-icon" style="margin-right: 20px;">
+            LOGOUT</a>
+           
+        </div>
+    </div>
+</div>

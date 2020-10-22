@@ -1,0 +1,34 @@
+<div class="relative">
+        <a href="JavaScript:Void(0)" class="crose-icon" mat-dialog-close>
+            <img src="../../../assets/images/cencel-icon.svg" alt="" />
+        </a>
+        <mat-dialog-content class="modal-sm">
+
+            <div class="align-center mb-1">
+                <h3 mat-dialog-title class="fontsize-24 color-black fontfamily-bold mb-2 mt-2" >Request for Installation</h3>
+                <span class="fontsize-12 fontfamily-regular color-black">Enter below details to get installation</span>
+            </div>
+            
+                <mat-form-field>
+                    <input matInput placeholder="Full Name" [(ngModel)]="fullname">
+                    <p *ngIf="fullname_err" class="error">{{fullname_err}}</p>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Mobile Number" [(ngModel)]="mobile_no">
+                    <p *ngIf="mobile_no_err" class="error">{{mobile_no_err}}</p>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Email" [(ngModel)]="emailaddress">
+                    <p *ngIf="emailaddress_err" class="error">{{emailaddress_err}}</p>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <textarea matInput placeholder="Message" [(ngModel)]="message"></textarea>
+                    <p *ngIf="message_err" class="error">{{message_err}}</p>
+                </mat-form-field>
+            
+                <button (click)="submitInstallation()" class="btn btn-green" mat-button>Submit</button>
+                <p *ngIf="successMsg" class="color-green">{{successMsg}}</p>
+            
+        </mat-dialog-content>
+    </div>
+    

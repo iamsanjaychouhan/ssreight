@@ -1,0 +1,455 @@
+<section class="profile_detail">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 pt-3 m-auto">
+                <div class="service-box mb-5" style="width:100%;">
+                    <div class="title-block" style="width:100%;">
+                        <h5 class="title">Manage Addresses</h5>
+                        <a class="add-btn-block" href="javascript:void(0)" (click)="NewAddress()">
+                            <button class="custom-btn add-btn">
+                                <mat-icon class="add-icon">queue</mat-icon>&nbsp;
+                                <div (click)="NewAddress()">Add New Address</div>
+                            </button>
+                        </a>
+                    </div>
+
+                    <!-- <div class="address-outer-block mt-2" *ngIf="newaddress !=''">
+                        <h5 class="form-title">Add New Address</h5>
+                        <form class="example-form" #PersonalForm="ngForm">
+                            <div fxLayout="column" fxFlex="100">
+                                <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-between start" fxFlex="100" fxLayoutGap="20px">
+                                    <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput placeholder="First Name" [(ngModel)]="uname" name="uname" id="uname" required>
+                                            <p class="error" *ngIf="name_err">{{name_err}}</p>
+                                        </mat-form-field>
+                                    </div>
+                                    <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput placeholder="Mobile No." [(ngModel)]="mobile_no" name="mobile_no" id="mobile_no" minlength="10" maxlength="13" pattern="[0-9]+" required>
+                                            <p class="error" *ngIf="mobile_no_err">{{mobile_no_err}}</p>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-between start" fxFlex="100" fxLayoutGap="20px">
+                                    <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput placeholder="Address(House No, Building, Street, Area)" [(ngModel)]="address_name" name="address_name" id="address_name" required>
+                                            <p class="adr_err" *ngIf="address_name_err">{{address_name_err}}</p>
+                                        </mat-form-field>
+                                    </div>
+                                    <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput placeholder="City name" [(ngModel)]="city_name" name="city_name" id="city_name" required>
+                                            <p class="adr_err" *ngIf="city_name_err">{{city_name_err}}</p>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-between start" fxFlex="100" fxLayoutGap="20px">
+                                    <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput placeholder="State name" [(ngModel)]="state_name" name="state_name" id="state_name" required>
+                                            <p class="adr_err" *ngIf="state_name_err">{{state_name_err}}</p>
+                                        </mat-form-field>
+                                    </div>
+                                    <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput placeholder="Pincode" [(ngModel)]="pincode" name="pincode" id="pincode" minlength="6" maxlength="6" pattern="[0-9]+" required>
+                                            <p class="adr_err" *ngIf="pincode_err">{{pincode_err}}</p>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-between start" fxFlex="100" fxLayoutGap="20px">
+                                    <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput placeholder="Landmark(optional)" [(ngModel)]="landmark" name="landmark" id="landmark" required>
+                                        </mat-form-field>
+                                    </div>
+                                    <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput placeholder="Alternate Phone(optional)" [(ngModel)]="alt_phone" name="alt_phone" id="alt_phone" required>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" fxLayoutGap="20px">
+                                    <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100">
+                                        <p class="mb-10 mt-0 color-dgray fontsize-14">Tag this location</p>
+                                        <div class="discount-type">
+                                            <div class="radio mt-0 mb-0 relative">
+                                                <label class="discount-type-inner mt-2">
+                                                    <input type="radio" *ngIf="addresstype=='home'" checked [(ngModel)]="addresstype" value="home">
+                                                    <input type="radio" *ngIf="addresstype!='home'" [(ngModel)]="addresstype" value="home">
+                                                    <span class="cr">
+	                                              Home
+	                                          </span>
+                                                </label>
+                                                <label class="discount-type-inner mt-2">
+                                                    <input type="radio" [(ngModel)]="addresstype" *ngIf="addresstype=='work'" checked value="work">
+                                                    <input type="radio" [(ngModel)]="addresstype" *ngIf="addresstype!='work'" value="work">
+                                                    <span class="cr">
+	                                              Work
+	                                          </span>
+                                                </label>
+                                                <label class="discount-type-inner mt-2">
+                                                    <input type="radio" *ngIf="addresstype=='other'" checked [(ngModel)]="addresstype" value="other">
+                                                    <input type="radio" *ngIf="addresstype!='other'" [(ngModel)]="addresstype" value="other">
+                                                    <span class="cr">
+	                                              Other
+	                                          </span>
+                                                </label>
+                                                <p class="adr_err" *ngIf="addresstype_err">{{addresstype_err}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div fxLayout="row wrap" fxLayoutAlign="space-between center" fxFlex="100" fxLayoutGap="20px">
+		                            <div class="mt-20 mb-3" fxLayout="row" fxLayoutAlign="start center" fxFlex="100">
+		                              	<input type="hidden" [(ngModel)]="action">
+		                              	<button *ngIf="action!='edit'" (click)="saveaddresspersonal()" class="btn btn-green save-btn">Save</button>
+		                              	<button *ngIf="action=='edit'" (click)="editaddresspersonal(addresId)" class="btn btn-green save-btn">Save & Deliver Here</button>
+		                            </div>
+		                          </div>
+                            </div>
+                        </form>
+                    </div> -->
+
+                    <div class="accor-inner-block" *ngIf="newaddress !='' && editoption !='open'">
+	                    <div class="accor-header-block step-process-header-green">
+	                        <span class="accor-icons accor-green-icon2"></span>
+	                        <span class="lable-title">Add New Address</span> 
+	                    </div>
+	                    <div class="accor-body-block">
+	                      <!-- <form class="example-form" #PersonalForm="ngForm"> -->
+	                        <div fxLayout="column" fxFlex="100">
+	                          <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-between start" fxFlex="100" fxLayoutGap="20px">
+	                            <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+	                              <mat-form-field class="example-full-width">
+	                                <input matInput placeholder="First Name" [(ngModel)]="uname" name="uname" id="uname" required>
+	                                <p class="error" *ngIf="name_err">{{name_err}}</p>
+	                              </mat-form-field>
+	                            </div>
+	                            <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+	                              <mat-form-field class="example-full-width">
+	                                <input matInput placeholder="Mobile No." [(ngModel)]="mobile_no" name="mobile_no" id="mobile_no" minlength="10" maxlength="13" pattern="[0-9]+" required>
+	                                <p class="error" *ngIf="mobile_no_err">{{mobile_no_err}}</p>
+	                              </mat-form-field>
+	                            </div>
+	                          </div>
+	                          <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-between start" fxFlex="100" fxLayoutGap="20px">
+	                            <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+	                              <mat-form-field class="example-full-width">
+	                                <input matInput placeholder="Address(House No, Building, Street, Area)" [(ngModel)]="address_name" name="address_name" id="address_name" required>
+	                                <p class="adr_err" *ngIf="address_name_err">{{address_name_err}}</p>
+	                              </mat-form-field>
+	                            </div>
+	                            <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+	                              <mat-form-field class="example-full-width">
+	                                <input matInput placeholder="City name" [(ngModel)]="city_name" name="city_name" id="city_name" required>
+	                                <p class="adr_err" *ngIf="city_name_err">{{city_name_err}}</p>
+	                              </mat-form-field>
+	                            </div>
+	                          </div>
+	                          <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-between start" fxFlex="100" fxLayoutGap="20px">
+	                            <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+	                              <mat-form-field class="example-full-width">
+	                                <input matInput placeholder="State name" [(ngModel)]="state_name" name="state_name" id="state_name" required>
+	                                <p class="adr_err" *ngIf="state_name_err">{{state_name_err}}</p>
+	                              </mat-form-field>
+	                            </div>
+	                            <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+	                              <mat-form-field class="example-full-width">
+	                                <input matInput placeholder="Pincode" [(ngModel)]="pincode" name="pincode" id="pincode" minlength="6" maxlength="6" pattern="[0-9]+" required>
+	                                <p class="adr_err" *ngIf="pincode_err">{{pincode_err}}</p>
+	                              </mat-form-field>
+	                            </div>
+	                          </div>
+	                          <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-between start" fxFlex="100" fxLayoutGap="20px">
+	                            <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+	                              <mat-form-field class="example-full-width">
+	                                <input matInput placeholder="Landmark(optional)" [(ngModel)]="landmark" name="landmark" id="landmark" required>
+	                              </mat-form-field>
+	                            </div>
+	                            <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+	                              <mat-form-field class="example-full-width">
+	                                <input matInput placeholder="Alternate Phone(optional)" [(ngModel)]="alt_phone" name="alt_phone" id="alt_phone" required>
+	                              </mat-form-field>
+	                            </div>
+	                          </div>
+	                          <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" fxLayoutGap="20px">
+	                            <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100">
+	                              <p class="mb-10 mt-0 color-dgray fontsize-14">Tag this location</p>
+	                              <div class="discount-type">
+	                                  <div class="radio mt-0 mb-0 relative">
+	                                      <label class="discount-type-inner mt-2">
+	                                          <input type="radio" *ngIf="addresstype=='home'" checked  [(ngModel)]="addresstype"  value="home">
+	                                          <input type="radio" *ngIf="addresstype!='home'" [(ngModel)]="addresstype"  value="home">
+	                                          <span class="cr">
+	                                              Home
+	                                          </span>
+	                                      </label>
+	                                      <label class="discount-type-inner mt-2">
+	                                          <input type="radio" [(ngModel)]="addresstype" *ngIf="addresstype=='work'" checked value="work">
+	                                          <input type="radio" [(ngModel)]="addresstype" *ngIf="addresstype!='work'" value="work">
+	                                          <span class="cr">
+	                                              Work
+	                                          </span>
+	                                      </label>
+	                                      <label class="discount-type-inner mt-2">
+	                                          <input type="radio" *ngIf="addresstype=='other'" checked [(ngModel)]="addresstype" value="other">
+	                                          <input type="radio" *ngIf="addresstype!='other'" [(ngModel)]="addresstype" value="other">
+	                                          <span class="cr">
+	                                              Other
+	                                          </span>
+	                                      </label>
+	                                      <p class="adr_err" *ngIf="addresstype_err">{{addresstype_err}}</p>
+	                                  </div>
+	                              </div>
+	                            </div>
+	                          </div>
+	                          <div fxLayout="row wrap" fxLayoutAlign="space-between center" fxFlex="100" fxLayoutGap="20px">
+	                            <div class="mt-20 mb-3" fxLayout="row" fxLayoutAlign="start center" fxFlex="100">
+	                              <input type="hidden" [(ngModel)]="action">
+	                              <button *ngIf="action!='edit'" (click)="saveaddresspersonal()" class="btn btn-green save-btn">Save</button>
+	                              <!-- <button *ngIf="action!='edit'" (click)="saveaddresspersonal()" class="btn btn-green save-btn" [disabled]="!PersonalForm.form.valid">Save</button> -->
+	                              <button *ngIf="action=='edit'" (click)="editaddresspersonal(addresId)" class="btn btn-green save-btn">Save & Deliver Here</button>
+	                              <!-- <a href="javascript:void(0)" href="/checkout" class="color-orange fontsize-14 fontfamily-semibold text-underline ml-3">Cancel</a> -->
+	                            </div>
+	                          </div>
+	                        </div>
+	                      <!-- </form> -->
+	                    </div>
+	                </div>
+
+	                <!-- show personal edit addressess -->
+	                <div class="accor-inner-block" *ngIf="selectedoption=='Personal'">
+	                    <div class="accor-header-block step-process-header-green">
+	                        <span class="accor-icons accor-green-icon2"></span>
+	                        <span class="lable-title">DELIVERY ADDRESS</span> 
+	                    </div>
+	                    <div class="accor-body-block">
+	                      <!-- <form class="example-form" #PersonalForm="ngForm"> -->
+	                        <div fxLayout="column" fxFlex="100">
+	                          <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-between start" fxFlex="100" fxLayoutGap="20px">
+	                            <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+	                              <mat-form-field class="example-full-width">
+	                                <input matInput placeholder="First Name" [(ngModel)]="uname" name="uname" id="uname" required>
+	                                <p class="error" *ngIf="name_err">{{name_err}}</p>
+	                              </mat-form-field>
+	                            </div>
+	                            <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+	                              <mat-form-field class="example-full-width">
+	                                <input matInput placeholder="Mobile No." [(ngModel)]="mobile_no" name="mobile_no" id="mobile_no" minlength="10" maxlength="13" pattern="[0-9]+" required>
+	                                <p class="error" *ngIf="mobile_no_err">{{mobile_no_err}}</p>
+	                              </mat-form-field>
+	                            </div>
+	                          </div>
+	                          <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-between start" fxFlex="100" fxLayoutGap="20px">
+	                            <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+	                              <mat-form-field class="example-full-width">
+	                                <input matInput placeholder="Address(House No, Building, Street, Area)" [(ngModel)]="address_name" name="address_name" id="address_name" required>
+	                                <p class="adr_err" *ngIf="address_name_err">{{address_name_err}}</p>
+	                              </mat-form-field>
+	                            </div>
+	                            <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+	                              <mat-form-field class="example-full-width">
+	                                <input matInput placeholder="City name" [(ngModel)]="city_name" name="city_name" id="city_name" required>
+	                                <p class="adr_err" *ngIf="city_name_err">{{city_name_err}}</p>
+	                              </mat-form-field>
+	                            </div>
+	                          </div>
+	                          <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-between start" fxFlex="100" fxLayoutGap="20px">
+	                            <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+	                              <mat-form-field class="example-full-width">
+	                                <input matInput placeholder="State name" [(ngModel)]="state_name" name="state_name" id="state_name" required>
+	                                <p class="adr_err" *ngIf="state_name_err">{{state_name_err}}</p>
+	                              </mat-form-field>
+	                            </div>
+	                            <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+	                              <mat-form-field class="example-full-width">
+	                                <input matInput placeholder="Pincode" [(ngModel)]="pincode" name="pincode" id="pincode" minlength="6" maxlength="6" pattern="[0-9]+" required>
+	                                <p class="adr_err" *ngIf="pincode_err">{{pincode_err}}</p>
+	                              </mat-form-field>
+	                            </div>
+	                          </div>
+	                          <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-between start" fxFlex="100" fxLayoutGap="20px">
+	                            <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+	                              <mat-form-field class="example-full-width">
+	                                <input matInput placeholder="Landmark(optional)" [(ngModel)]="landmark" name="landmark" id="landmark" required>
+	                              </mat-form-field>
+	                            </div>
+	                            <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+	                              <mat-form-field class="example-full-width">
+	                                <input matInput placeholder="Alternate Phone(optional)" [(ngModel)]="alt_phone" name="alt_phone" id="alt_phone" required>
+	                              </mat-form-field>
+	                            </div>
+	                          </div>
+	                          <div fxLayout="row wrap" fxLayoutAlign="space-between start" fxFlex="100" fxLayoutGap="20px">
+	                            <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100">
+	                              <p class="mb-10 mt-0 color-dgray fontsize-14">Tag this location</p>
+	                              <div class="discount-type">
+	                                  <div class="radio mt-0 mb-0 relative">
+	                                      <label class="discount-type-inner mt-2">
+	                                          <input type="radio" *ngIf="addresstype=='home'" checked  [(ngModel)]="addresstype"  value="home">
+	                                          <input type="radio" *ngIf="addresstype!='home'" [(ngModel)]="addresstype"  value="home">
+	                                          <span class="cr">
+	                                              Home
+	                                          </span>
+	                                      </label>
+	                                      <label class="discount-type-inner mt-2">
+	                                          <input type="radio" [(ngModel)]="addresstype" *ngIf="addresstype=='work'" checked value="work">
+	                                          <input type="radio" [(ngModel)]="addresstype" *ngIf="addresstype!='work'" value="work">
+	                                          <span class="cr">
+	                                              Work
+	                                          </span>
+	                                      </label>
+	                                      <label class="discount-type-inner mt-2">
+	                                          <input type="radio" *ngIf="addresstype=='other'" checked [(ngModel)]="addresstype" value="other">
+	                                          <input type="radio" *ngIf="addresstype!='other'" [(ngModel)]="addresstype" value="other">
+	                                          <span class="cr">
+	                                              Other
+	                                          </span>
+	                                      </label>
+	                                      <p class="adr_err" *ngIf="addresstype_err">{{addresstype_err}}</p>
+	                                  </div>
+	                              </div>
+	                            </div>
+	                          </div>
+	                          <div fxLayout="row wrap" fxLayoutAlign="space-between center" fxFlex="100" fxLayoutGap="20px">
+	                            <div class="mt-20 mb-3" fxLayout="row" fxLayoutAlign="start center" fxFlex="100">
+	                              <input type="hidden" [(ngModel)]="action">
+	                              <button *ngIf="action!='edit'" (click)="saveaddresspersonal()" class="btn btn-green save-btn">Save</button>
+	                              <!-- <button *ngIf="action!='edit'" (click)="saveaddresspersonal()" class="btn btn-green save-btn" [disabled]="!PersonalForm.form.valid">Save</button> -->
+	                              <button *ngIf="action=='edit'" (click)="editaddresspersonal(addresId)" class="btn btn-green save-btn">Save & Deliver Here</button>
+	                              <!-- <a href="javascript:void(0)" href="/checkout" class="color-orange fontsize-14 fontfamily-semibold text-underline ml-3">Cancel</a> -->
+	                            </div>
+	                          </div>
+	                        </div>
+	                      <!-- </form> -->
+	                    </div>
+	                </div>
+	                <!-- end show personal edit addressess -->
+
+	                <!-- show business edit addressess -->
+	                <div class="accor-inner-block" *ngIf="selectedoption=='Bussiness'">
+	                    <div class="accor-header-block step-process-header-green">
+	                      <span class="accor-icons accor-green-icon2"></span>
+	                      <span class="lable-title">DELIVERY ADDRESS</span> 
+	                    </div>
+	                    <div class="accor-body-block" >
+	                      <div fxLayout="column" fxFlex="100">
+	                        <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-between start" fxFlex="100" fxLayoutGap="20px">
+	                          <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+	                            <mat-form-field class="example-full-width">
+	                              <input matInput placeholder="Company Name" [(ngModel)]="uname" name="uname" id="uname" required>
+	                              <p class="error" *ngIf="name_err">
+	                              {{name_err}}</p>
+	                            </mat-form-field>
+	                          </div>
+	                          <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+	                            <mat-form-field class="example-full-width">
+	                              <input matInput placeholder="Mobile No." [(ngModel)]="mobile_no" name="mobile_no" id="mobile_no" minlength="10" maxlength="13" pattern="[0-9]+" required>
+	                              <p class="error" *ngIf="mobile_no_err">{{mobile_no_err}}</p>
+	                            </mat-form-field>
+	                          </div>
+	                        </div>
+	                        <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-between start" fxFlex="100" fxLayoutGap="20px">
+	                          <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+	                            <mat-form-field class="example-full-width">
+	                              <input matInput placeholder="GST Number" [(ngModel)]="gst" name="gst" id="gst" pattern="\d{2}[A-Z]{5}\d{4}[A-Z]{1}[A-Z\d]{1}[Z]{1}[A-Z\d]{1}" required>
+	                              <p class="adr_err" *ngIf="gst_err">{{gst_err}}</p>
+	                            </mat-form-field>
+	                          </div>
+	                          <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+	                            <mat-form-field class="example-full-width">
+	                              <input matInput placeholder="Email" [(ngModel)]="email_id" name="email_id" id="email_id" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+	                              <p class="adr_err" *ngIf="email_id_err">{{email_id_err}}</p>
+	                            </mat-form-field>
+	                          </div>
+	                        </div>
+	                        <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-between start" fxFlex="100" fxLayoutGap="20px">
+	                          <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+	                            <mat-form-field class="example-full-width">
+	                              <input matInput placeholder="Address(House No, Building, Street, Area)" [(ngModel)]="address_name" name="address_name" id="address_name" required>
+	                              <p class="adr_err" *ngIf="address_name_err">{{address_name_err}}</p>
+	                            </mat-form-field>
+	                          </div>
+	                          <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+	                            <mat-form-field class="example-full-width">
+	                              <input matInput placeholder="City name" [(ngModel)]="city_name" name="city_name" id="city_name" required>
+	                              <p class="adr_err" *ngIf="city_name_err">{{city_name_err}}</p>
+	                            </mat-form-field>
+	                          </div>
+	                        </div>
+	                        <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-between start" fxFlex="100" fxLayoutGap="20px">
+	                          <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+	                            <mat-form-field class="example-full-width">
+	                              <input matInput placeholder="State name" [(ngModel)]="state_name" name="state_name" id="state_name" required>
+	                              <p class="adr_err" *ngIf="state_name_err">{{state_name_err}}</p>
+	                            </mat-form-field>
+	                          </div>
+	                          <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+	                            <mat-form-field class="example-full-width">
+	                              <input matInput placeholder="Pincode" [(ngModel)]="pincode" name="pincode" id="pincode" minlength="6" maxlength="6" pattern="[0-9]+" required>
+	                              <p class="adr_err" *ngIf="pincode_err">{{pincode_err}}</p>
+	                            </mat-form-field>
+	                          </div>
+	                        </div>
+	                        <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-between start" fxFlex="100" fxLayoutGap="20px">
+	                          <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+	                            <mat-form-field class="example-full-width">
+	                              <input matInput placeholder="Landmark(optional)" [(ngModel)]="landmark" name="landmark" id="landmark" required>
+	                            </mat-form-field>
+	                          </div>
+	                          <div fxLayout="column" fxLayoutAlign="start start" fxFlex="100" fxFlex.gt-xs="48" fxFill="fill">
+	                            <mat-form-field class="example-full-width">
+	                              <input matInput placeholder="Alternate Phone(optional)" [(ngModel)]="alt_phone" name="alt_phone" id="alt_phone" required>
+	                            </mat-form-field>
+	                          </div>
+	                        </div>
+
+	                        <div fxLayout="row wrap" fxLayoutAlign="space-between center" fxFlex="100" fxLayoutGap="20px">
+	                          <div class="mt-20 mb-3" fxLayout="row" fxLayoutAlign="start center" fxFlex="100">
+	                            <input type="hidden" [(ngModel)]="action">
+	                            <button *ngIf="action!='edit'" (click)="saveaddressbussiness()" class="btn btn-green save-btn">save</button>
+	                            <button *ngIf="action=='edit'" (click)="editaddressbussiness(addresId)" class="btn btn-green save-btn">Save Address</button>
+	                          </div>
+	                        </div>
+	                      </div>
+	                    </div>
+	                </div>
+	                <!-- end show business edit addressess -->
+
+	                <!-- show address list -->
+                    <ul class="address-list">
+                        <li class="address-outer-block mt-2" *ngFor="let address of addreslist;">
+                            <div class="chip-block">
+                                <div class="mat-chip-name">{{address.address_type}}</div>
+                                <!-- <div class="mat-chip-name" *ngIf="address.address_type !=''">{{address.address_type}}</div> -->
+                                <!-- <div class="mat-chip-name" *ngIf="address.buytype !=''">{{address.buytype}}</div> -->
+                                <div class="button-block" fxLayout="row" fxLayoutAlign="center space-between" fxLayoutGap="15px" style="line-height: 24px;">
+                                    <p *ngIf="address.buytype == 'Personal' && address.buytype !=''">
+		                                <a href="javascript:void(0)" fxLayout="row" fxLayoutAlign="start space-between" fxLayoutGap="10px" (click)="editpersonalshow(address.address_id)" class="edit-text"><mat-icon class="edit-icon">edit</mat-icon> Edit</a>
+		                            </p>
+		                            <p *ngIf="address.buytype =='Bussiness'">
+		                                <a href="javascript:void(0)" fxLayout="row" fxLayoutAlign="start space-between" fxLayoutGap="10px" (click)="editbussinessshow(address.address_id)" class="edit-text"><mat-icon class="edit-icon">edit</mat-icon> Edit</a>
+		                            </p>
+                                    <div title="Delete Address" (click)="openRemoveItemConfirmationDialog(address.address_id)" class="d-flex c-remove-text removebtn"><mat-icon class="delete-icon">delete</mat-icon> Remove</div>
+                                </div>
+                            </div>
+                            <div class="address-body-block">
+                                <div class="address-block">
+                                    <div class="adress-wrapper">
+                                        <div class="address-title"><b>{{address.a_name}}</b></div>
+                                        <div class="address-title">+91 {{address.a_mobile}}</div>
+                                        <div class="address-text">{{address.a_address}}, {{address.a_city}}, {{address.a_state}}, {{address.a_pincode}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>                        
+                    </ul>
+                    <!-- end show address list -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

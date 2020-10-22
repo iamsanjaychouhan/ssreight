@@ -1,0 +1,87 @@
+.google-maps {
+        position: relative;
+        padding-bottom: 90%;
+        width: 100%;
+        height: 0;
+        overflow: hidden;
+    }
+    .google-maps iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+.contact-sec{
+    width: 100%;
+    background: #fff;
+}
+.contact-right-block{
+    width: 100%;
+    background: #fff;
+    padding: 30px;
+}
+
+.office1{
+    padding-bottom: 5px;
+}
+.page-title{
+    color: #323232;
+    line-height: 30px;
+    margin-bottom: 15px;
+    text-align: left;
+    text-transform: capitalize;
+    font-size: 26px;
+    font-weight: 600;
+}
+.off-sub-title{
+    font-size: 16px;
+    color: #323232;
+    font-weight: 500;
+    line-height: 22px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #525252;
+    display: inline-block;
+    font-family: 'Roboto', sans-serif;
+}
+
+.add-line a{
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #323232;
+    text-align: left;
+    padding-bottom: 5px;
+    text-decoration: none;
+}
+.add-line a .icon{
+    width: 26px;
+    height: 26px;
+    font-size: 16px;
+    line-height: 28px;
+    color: #848484;
+}
+.add-line a .location-icon{
+    line-height: 6px;
+    width: 32px;
+}
+
+agm-map {
+      height: 300px;
+    }
+
+
+@media only screen and (max-width: 767px){
+    .contact-right-block{
+        padding: 20px 0;
+    }
+}

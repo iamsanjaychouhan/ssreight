@@ -1,0 +1,32 @@
+<div class="relative">
+    <!-- <a class="crose-icon" mat-dialog-close>
+        <img src="../../../assets/images/cencel-icon.svg" alt=""/>
+    </a> -->
+    <!-- <mat-dialog-content class="modal-sm align-center" *ngIf="otpemail!='' && access=='company' ">
+        <div class="align-center mb-4">
+            <h2 mat-dialog-title class="fontsize-24 color-black fontfamily-bold mb-1" >
+            Greetings from Safetywagon</h2><br>
+            <h2>Your account will get activated within 24 hours after verification</h2>
+        </div>
+    </mat-dialog-content> -->
+    <mat-dialog-content class="modal-sm align-center">
+        <div class="align-center mb-4">
+            <h2 mat-dialog-title class="fontsize-24 color-black fontfamily-bold mb-1" >Enter Verification Code</h2>
+            <span class="fontsize-12 fontfamily-regular">We have sent you a 4 digit<br> 
+            verification Code on your Mail and Your submitted mobile number</span>
+        </div>
+        <form class="">
+            <div class="relative otp-box">
+                <input type="hidden" [(ngModel)]="otpemail" id="otpemail" name="otpemail" value="{{otpemail}}">
+                <input type="text" #input1 maxlength="1" class="num" [(ngModel)]="num_1" name="num_1" id="num_1" [appAutoTab]="input2">
+                <input type="text" #input2 maxlength="1" class="num" [(ngModel)]="num_2" name="num_2" id="num_2" [appAutoTab]="input3">
+                <input type="text" #input3 maxlength="1" class="num" [(ngModel)]="num_3" name="num_3" id="num_3" [appAutoTab]="input4">
+                <input type="text" #input4 maxlength="1" class="num" [(ngModel)]="num_4" name="num_4" id="num_4">
+            </div>
+            <span class="error">{{verify_error}}</span>
+            <!-- <span class="display-b mb-2">0.18</span> -->
+            <button class="btn btn-green btn-shadow" (click)="checkverifyOTP()" mat-button>Login</button>
+            <!-- <a href="#" class="color-black fontsize-14 fontfamily-regular display-b mt-2">Resend OTP</a> -->
+        </form>
+    </mat-dialog-content>
+</div>

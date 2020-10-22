@@ -1,0 +1,121 @@
+<section class="home-sec-9">
+    <div class="container">
+        <div class="row">
+            <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2">
+                <div class="footer-service-block">
+                    <span class="material-icons icon">groups</span>
+                    <span class="text-title">Serving <span class="large">25000+</span> Customers</span>
+                </div>
+            </div>
+            <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2">
+                <div class="footer-service-block">
+                    <div class="icon image-icon"></div>
+                    <span class="text-title">Topay Shipment Available</span>
+                </div>
+            </div>
+            <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2">
+                <div class="footer-service-block">
+                    <span class="material-icons icon">verified_user</span>
+                    <span class="text-title">Secure Payment</span>
+                </div>
+            </div>
+            <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2">
+                <div class="footer-service-block">
+                    <span class="material-icons icon">sync</span>
+                    <span class="text-title">Easy Return</span>
+                </div>
+            </div>
+            <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2">
+                <div class="footer-service-block">
+                    <span class="material-icons icon">local_shipping</span>
+                    <span class="text-title">Nationwide Delivery</span>
+                </div>
+            </div>
+            <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2">
+                <div class="footer-service-block">
+                    <span class="material-icons icon">support_agent</span>
+                    <span class="text-title">Support <br> <small>10:30am - 6pm (mon - sat)</small></span> 
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="footer-upper-block pt-5 pb-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="block-wrapper pb-3">
+                    <div class="brand-list pb-3">
+                        <h6 class="fleft-head">Top Search Category :</h6>
+                        <div class="brand-list-wrapper">
+                            <a routerLink="product/{{result.parent_category_name | removewhitespaces | lowercase }}/{{result.category_name | removewhitespaces | lowercase}}/{{result.category_id}}" class="brand-link" *ngFor="let result of results">
+                                {{result.category_name}}
+                            </a>
+                        </div>
+                    </div>
+                    <div class="brand-list pb-3">
+                        <h6 class="fleft-head">Most Searched Brands :</h6>
+                        <div class="brand-list-wrapper">
+                            <a routerLink="product/{{brandresult.brand_name | lowercase | removewhitespaces }}/{{brandresult.brand_id}}" class="brand-link" *ngFor="let brandresult of brandresults">{{brandresult.brand_name}}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="section-block pb-3">
+                    <h6 class="text-head mb-3">Shipping Policy</h6>
+                    <p class="para-text">Customers must provide full, accurate and legible information/Address in the order form. PIN Code number and working Telephone number or Mobile Phone Number is must for everyone.</p>
+                    <p class="para-text">All credit card payments must be authorized online. In the event of non-authorization of any credit card, Safety Wagon is not responsible for all or part failure or non-acceptance and non-authorization of such credit cards.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                <a href="/"><img src="../../../assets/images/safety-logo.png" class="footer-logo-icon"></a>
+                <div class="footer-social-icon">
+                    <a href="https://www.facebook.com/Safetywagon/" class="icons" target="_blank">
+                        <img src="../../../assets/images/facebook-white-icon.svg" alt=""></a>
+                    <a href="https://www.linkedin.com/company/safety-wagon/" class="icons" target="_blank">
+                        <img src="../../../assets/images/indeed-white-icon.svg" alt=""></a>
+                    <a href="https://twitter.com/Safety_Wagon" class="icons" target="_blank">
+                        <img src="../../../assets/images/twiter-white-icon.svg" alt=""></a>
+                    <a href="https://www.instagram.com/safety_wagon/" class="icons" target="_blank">
+                        <img src="../../../assets/images/instagram-white-icon.svg" alt=""></a>
+                </div>  
+            </div>
+            <div class="col-12 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                <h6 class="h6 color-white fontfamily-bold">Information</h6>
+                <ul class="">
+                    <li class="about-us"><a routerLink="about-us">About Us</a></li>
+                    <li class="contact-us"><a routerLink="contact-us">Contact Us</a></li>
+                    <!-- <li class=""><a href="book-service">Book a Service</a></li> -->
+                </ul>
+            </div>
+            <div class="col-12 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                <h6 class="h6 color-white fontfamily-bold">Other Links</h6> 
+                <ul class="">
+                    <li class=""><a routerLink="terms-conditions">Terms And Conditions</a></li>
+                    <li class=""><a routerLink="return-exchange">Return And Exchange</a></li>
+                    <li class=""><a routerLink="shipping-policy">Shipping Policy</a></li>
+                    <li class=""><a routerLink="privacy-policy">Privacy Policy </a></li>
+                </ul>
+            </div>
+            <div class="col-12 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                <h6 class="h6 color-white fontfamily-bold">Call and Email Us On</h6>
+                <div class="relative">
+                    <span class="fontsize-16 fontfamily-semibold display-b">+91 73899-01234 (10am-7pm)</span>
+                    <span class="fontsize-16 fontfamily-semibold display-b">care@safetywagon.com</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer-bottom">
+    <div class="container">
+        <div>
+            <span class="copyrighte"> All Rights Reserved © 2019 Safety Wagon </span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="relative">
+        <a href="JavaScript:Void(0)" class="crose-icon" mat-dialog-close>
+            <img src="../../../assets/images/cencel-icon.svg" alt="" />
+        </a>
+        <mat-dialog-content class="modal-sm">
+                <input type="hidden" [(ngModel)]="productid" name="productid">
+                <input type="hidden" [(ngModel)]="orderid" name="orderid">
+
+            <div class="align-center mb-1">
+                <h3 mat-dialog-title class="fontsize-24 color-black fontfamily-bold mb-2 mt-2" >Rate & Review</h3>
+                <span class="fontsize-14 fontfamily-regular color-black">Rate and review your product</span>
+            </div>
+            <div class="pt-3 pb-3">
+                    <input type="hidden" [(ngModel)]="starrate">
+                <h4 class="fontsize-16 color-dgray mb-10">Tap to Rate</h4>
+                <star-rating value="" checkedcolor="#68B130" uncheckedcolor="#D4F3A7" size="34px"    readonly="false" (rate)="onRate($event)"></star-rating>
+            </div>
+            <div class="pt-3 pb-3">
+                <h4 class="fontsize-16 color-dgray mb-10">Review</h4>
+                <mat-form-field class="example-full-width">
+                    <textarea name="star_review" [(ngModel)]="star_review" matInput placeholder="Write here"></textarea>
+                </mat-form-field>
+            </div>
+            <div class="pt-3 pb-3">
+                <button (click)="ratesubmit()" class="btn btn-green" mat-button>Submit</button>
+                <p *ngIf="(ratesuccess=='success' || rateerror=='error')" [ngClass]="[(ratesuccess=='success') ? 'color-green' : '',  (rateerror=='error') ? 'color-red' : '']">{{messages}}</p>
+            </div>
+                
+            
+        </mat-dialog-content>
+    </div>
+    

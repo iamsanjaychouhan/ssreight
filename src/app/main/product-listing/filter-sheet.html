@@ -1,0 +1,106 @@
+<mat-nav-list>
+  <h5>Filter</h5>
+<!--   <a href="https://keep.google.com/" mat-list-item (click)="openLink($event)">
+    <span mat-line>Google Keep</span>
+    <span mat-line>Add to a note</span>
+  </a>
+
+  <a href="https://docs.google.com/" mat-list-item (click)="openLink($event)">
+    <span mat-line>Google Docs</span>
+    <span mat-line>Embed in a document</span>
+  </a>
+
+  <a href="https://plus.google.com/" mat-list-item (click)="openLink($event)">
+    <span mat-line>Google Plus</span>
+    <span mat-line>Share with your friends</span>
+  </a>
+
+  <a href="https://hangouts.google.com/" mat-list-item (click)="openLink($event)">
+    <span mat-line>Google Hangouts</span>
+    <span mat-line>Show to your coworkers</span>
+  </a> -->
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header class="panel-head p-0" [collapsedHeight]="'34px'" [expandedHeight]="'34px'">
+        <mat-panel-title>
+          Discount
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+     <div class="relative checkbox-listing border-b pb-2">
+      <div class="discount-type">
+        <div class="radio mt-0 mb-0">
+          <label class="discount-type-inner">
+            <input type="radio" name="remember" (click)="filtercheck('discountpercent','10-20')">
+            <span class="cr">
+                10% - 20%
+            </span>
+          </label>
+          <label class="discount-type-inner">
+            <input type="radio" name="remember" (click)="filtercheck('discountpercent','21-30')">
+            <span class="cr">
+                21% - 30%
+            </span>
+          </label>
+          <label class="discount-type-inner">
+            <input type="radio" name="remember" (click)="filtercheck('discountpercent','31-40')">
+            <span class="cr">
+                31% - 40%
+            </span>
+          </label>
+          <label class="discount-type-inner">
+            <input type="radio" name="remember" (click)="filtercheck('discountpercent','41-50')">
+            <span class="cr">
+                41% - 50%
+            </span>
+          </label>
+          <label class="discount-type-inner">
+            <input type="radio" name="remember" (click)="filtercheck('discountpercent','51-60')">
+            <span class="cr">
+                51% - 60%
+            </span>
+          </label>
+          <label class="discount-type-inner">
+            <input type="radio" name="remember" (click)="filtercheck('discountpercent','61-70')">
+            <span class="cr">
+                61% - 70%
+            </span>
+          </label>
+          <label class="discount-type-inner">
+            <input type="radio" name="remember" (click)="filtercheck('discountpercent','71-80')">
+            <span class="cr">
+                71% - 80%
+            </span>
+          </label>
+          <label class="discount-type-inner">
+            <input type="radio" name="remember" (click)="filtercheck('discountpercent','81-90')">
+            <span class="cr">
+                81% & above
+                {{ this.brands}}
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header class="panel-head p-0" [collapsedHeight]="'34px'" [expandedHeight]="'34px'">
+        <mat-panel-title>
+          Select Brand
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="relative checkbox-listing border-b listoverflow">
+        <mat-checkbox class="display-b" (change)="onChange('brand',brand.brand_id, $event)" *ngFor="let brand of brands">
+          <span class="fontsize-14 color-gray">{{brand.brand_name}}</span>
+        </mat-checkbox>
+        <mat-checkbox class="display-b">
+          <span class="fontsize-14 color-gray">Test Brand {{this.myBrand}}</span>
+        </mat-checkbox>
+      </div>
+    </mat-expansion-panel>
+    <div class="relative button-block">
+      <button class="btn btn-green btn-shadow custom-btn" (click)="openLink($event)" (click)="searchrecord('yes')" mat-button>Apply</button>
+    </div>
+  </mat-accordion>
+</mat-nav-list>
